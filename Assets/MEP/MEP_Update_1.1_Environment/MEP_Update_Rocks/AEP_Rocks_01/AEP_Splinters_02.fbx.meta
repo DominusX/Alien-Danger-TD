@@ -3,7 +3,12 @@ guid: 342b9df6ea327a2458aa4dfdb1eac5ee
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
     4300000: AEP_Splinters_02
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0

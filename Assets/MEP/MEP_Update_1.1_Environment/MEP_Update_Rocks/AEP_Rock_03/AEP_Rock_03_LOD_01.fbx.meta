@@ -3,7 +3,12 @@ guid: 3dcfe6022afcbfa4296fff15f86ad3d3
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
     4300000: AEP_Rock_03_LOD_01
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0

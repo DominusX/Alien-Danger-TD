@@ -3,11 +3,16 @@ guid: 3c5148e6a7c071c418f9f2ecbfd520fd
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
     4300000: AEP_Building_02_LOD_03
     4300002: AEP_Building_02_LOD_02
     4300004: AEP_Building_02_LOD_01
     4300006: Plane
     4300008: AEP_Building_02_Diffuse
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0

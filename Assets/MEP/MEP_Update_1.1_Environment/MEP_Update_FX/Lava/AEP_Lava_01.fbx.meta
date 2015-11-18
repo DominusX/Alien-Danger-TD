@@ -3,7 +3,12 @@ guid: 92c072cb94392df489b92d0bfb65ceeb
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
     4300000: AEP_Lava
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0

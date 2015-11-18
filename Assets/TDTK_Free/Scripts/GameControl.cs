@@ -52,14 +52,14 @@ namespace TDTK {
 		
 		
 		public string nextScene="";
-		public string mainMenu="";
+		public string mainMenu="Menu";
 		public static void LoadNextScene(){ if(instance.nextScene!="") Load(instance.nextScene); }
-		public static void LoadMainMenu(){ if(instance.mainMenu!="") Load(instance.mainMenu); }
+		public static void LoadMainMenu(){ if(instance.mainMenu!="Menu") Load(instance.mainMenu); }
 		public static void Load(string levelName){
 			//if(gameState==_GameState.Ended && instance.playerLife>0){
 			//	ResourceManager.NewSceneNotification();
 			//}
-			Application.LoadLevel(levelName);
+			Application.LoadLevel("Menu");
 		}
 		
 		

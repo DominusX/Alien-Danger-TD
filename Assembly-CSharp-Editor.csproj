@@ -6,7 +6,7 @@
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
 	<RootNamespace></RootNamespace>
-	<ProjectGuid>{A100AD77-B135-354C-D1BD-D53A14A1D60C}</ProjectGuid>
+	<ProjectGuid>{B6B5DF41-4DB1-A5AB-6E69-797306B93429}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<AssemblyName>Assembly-CSharp-Editor</AssemblyName>
@@ -65,6 +65,7 @@
      <Compile Include="Assets\TDTK_Free\Scripts\Editor\UnitTowerEditor.cs" />
      <Compile Include="Assets\TDTK_Free\Scripts\Editor\UnitTowerEditorWindow.cs" />
      <Compile Include="Assets\TDTK_Free\Scripts\UI\Editor\UIEditor.cs" />
+     <None Include="Assets\Plugins\Parse.Unity.xml" />
  <Reference Include="UnityEngine.Advertisements">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
  </Reference>
@@ -85,6 +86,9 @@
  </Reference>
  <Reference Include="UnityEngine.Analytics">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+ </Reference>
+ <Reference Include="Parse.Unity">
+ <HintPath>C:/Users/John/Work/Alien-Danger-TD/Assets/Plugins/Parse.Unity.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
@@ -128,7 +132,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{6F083A45-EB6A-0B41-1A05-A6EF36412B93}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
+      <Project>{047A707C-C353-7C5F-0CFE-1B80CBA92141}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

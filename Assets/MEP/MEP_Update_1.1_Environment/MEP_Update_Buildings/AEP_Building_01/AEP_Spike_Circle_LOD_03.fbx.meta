@@ -3,7 +3,12 @@ guid: 980699b8a39249a4ea6eadcdb12f2094
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
     4300000: AEP_Spike_Circle_LOD_03
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
