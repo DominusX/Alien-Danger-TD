@@ -213,7 +213,8 @@ namespace TDTK {
 		public static bool isOn=true;
 		public static void Show(UnitTower tower, bool showControl=false){ instance._Show(tower, showControl); }
 		public void _Show(UnitTower tower, bool showControl=false){
-			isOn=true;
+			// Set to true if you want tower info to display on hover
+			isOn=false;
 			
 			thisObj.SetActive(showControl);
 			floatingButtons.SetActive(showControl);

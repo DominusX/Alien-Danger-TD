@@ -19,7 +19,7 @@ namespace TDTK {
 			for(int i=0; i<levelName.Count; i++){
 				if(i==0) buttonList[0].Init();
 				else if(i>0){
-					buttonList.Add(buttonList[0].Clone("ButtonStart"+(i+1), new Vector3(0, -i*50, 0)));
+					buttonList.Add(buttonList[0].Clone("ButtonStart"+(i+1), new Vector3(0, -i*45, 0)));
 				}
 				
 				buttonList[i].label.text=displayedName[i];
@@ -33,15 +33,33 @@ namespace TDTK {
 		
 		}
 		
-		public void OnStartButton(GameObject butObj){
+		public void OnButtonPress(GameObject butObj){
 			for(int i=0; i<buttonList.Count; i++){
 				if(buttonList[i].rootObj==butObj){
-					if(i == 3){
-						Application.Quit();
+					string curLevel = Application.loadedLevelName;
+					switch(curLevel){
+						case "Menu":
+							if(i == 3){
+								Application.Quit();
+							}
+							else{
+								Application.LoadLevel(levelName[i]);
+							}
+						break;
+						case "Leaderboard":
+						case "Help":
+							Application.LoadLevel(0);
+						break;
+						case "PlayerName":
+							if(i == 0){
+								Application.LoadLevel(4);
+							}
+							else{
+								Application.LoadLevel(0);
+							}
+						break;
 					}
-					else{
-						Application.LoadLevel(levelName[i]);
-					}
+
 				}
 			}
 		}
