@@ -26,7 +26,7 @@ public class Blink_MGMuzzle : MonoBehaviour {
 			float z=Random.Range(-posOffset, posOffset);
 			thisT.localPosition=new Vector3(0, 0, 0.5f)+new Vector3(x, y, z);
 			ren.enabled=!ren.enabled;
-			yield return new WaitForSeconds(0.05f);
+			yield return new WaitForSeconds(0.7f);
 		}
 	}
 	
