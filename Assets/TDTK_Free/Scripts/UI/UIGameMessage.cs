@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-
 using System.Collections;
 using System.Collections.Generic;
 
@@ -23,16 +22,15 @@ namespace TDTK {
 			txtGameMessageT=txtGameMessage.transform;
 			txtGameMessage.SetActive(false);
 		}
-		
-		
+
 		void OnEnable(){
 			GameControl.onGameMessageE += _DisplayMessage;
 		}
+
 		void OnDisabe(){
 			GameControl.onGameMessageE -= _DisplayMessage;
 		}
-		
-		
+
 		public static void DisplayMessage(string msg){ instance._DisplayMessage(msg);	}
 		void _DisplayMessage(string msg){
 			if(txtGameMessage==null) return;
@@ -54,8 +52,7 @@ namespace TDTK {
 			msgList.Add(obj);
 			StartCoroutine(DestroyMessage(obj));
 		}
-		
-		
+
 		IEnumerator DestroyMessage(GameObject obj){
 			float dur=0;
 			while(dur<1.25f){ dur+=Time.unscaledDeltaTime;	yield return null; }
@@ -68,12 +65,11 @@ namespace TDTK {
 			msgList.RemoveAt(0);
 			Destroy(obj);
 		}
-		
-		
-		
+
 		void TweenPosition(GameObject obj, float duration, Vector3 targetPos){
 			StartCoroutine(_TweenPosition(obj, duration, targetPos));
 		}
+
 		IEnumerator _TweenPosition(GameObject obj, float duration, Vector3 targetPos){
 			Transform objT=obj.transform;
 			Vector3 startPos=objT.localPosition;
@@ -86,11 +82,11 @@ namespace TDTK {
 			}
 			if(objT!=null) objT.localPosition=targetPos;
 		}
-		
-		
+
 		void TweenScale(GameObject obj, float duration, Vector3 targetScale){
 			StartCoroutine(_TweenScale(obj, duration, targetScale));
 		}
+
 		IEnumerator _TweenScale(GameObject obj, float duration, Vector3 targetScale){
 			Transform objT=obj.transform;
 			Vector3 startScale=objT.localScale;
@@ -103,9 +99,5 @@ namespace TDTK {
 			}
 			if(objT!=null) objT.localScale=targetScale;
 		}
-		
-		
-		
 	}
-
 }

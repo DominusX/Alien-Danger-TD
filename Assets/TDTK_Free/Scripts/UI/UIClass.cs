@@ -1,19 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-
 using System.Collections;
 using System.Collections.Generic;
 
-
 namespace TDTK {
-
 
 	[System.Serializable]
 	public class UIObject{
 		public GameObject rootObj;
 		public Transform rootT;
 	}
-
 
 	[System.Serializable]
 	public class UIItem{
@@ -27,8 +23,7 @@ namespace TDTK {
 		public Text label;
 		public Image imageBG;
 		public Image imageIcon;
-		
-		
+
 		public void Init(){
 			rootT=rootObj.transform;
 			
@@ -58,8 +53,6 @@ namespace TDTK {
 			return newBut;
 		}
 	}
-
-
 
 	[System.Serializable]
 	public class UnitOverlay : UIObject{
@@ -91,13 +84,4 @@ namespace TDTK {
 			return newOverlay;
 		}
 	}
-
-
-
-	//~ public class Tween : MonoBehaviour{
-		//~ public static void Pos(GameObject obj, float duration, Vector3 targetPos){
-			
-		//~ }
-	//~ }
-		
 }

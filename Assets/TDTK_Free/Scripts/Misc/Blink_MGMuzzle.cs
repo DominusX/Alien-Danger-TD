@@ -29,9 +29,4 @@ public class Blink_MGMuzzle : MonoBehaviour {
 			yield return new WaitForSeconds(0.7f);
 		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

@@ -7,18 +7,14 @@ using TDTK;
 namespace TDTK {
 	
 	public class PathTD : MonoBehaviour {
-
 		
 		public List<Transform> wpList=new List<Transform>();
 		
 		public bool createPathLine=true;
-		
 		public float dynamicOffset=1;
-		
 		public bool loop=false;
 		public int loopPoint=0;		
-		
-		
+
 		public void Init(){
 			
 			if(loop){
@@ -38,8 +34,7 @@ namespace TDTK {
 		public Transform GetSpawnPoint(){ return wpList[0]; }
 		
 		public int GetLoopPoint(){ return loopPoint; }
-		
-		
+
 		public float GetPathDistance(int wpID=1){
 			if(wpList.Count==0) return 0;
 			
@@ -50,14 +45,11 @@ namespace TDTK {
 			
 			return totalDistance;
 		}
-		
-		
-		
-		
-		
+
 		void Start(){
 			if(createPathLine) CreatePathLine();
 		}
+
 		void CreatePathLine(){
 			
 			Transform parentT=new GameObject().transform;
@@ -89,13 +81,10 @@ namespace TDTK {
 				startPoint=wpList[i].position;
 			}
 		}
-		
-		
-		
-		
-		
+
 		public bool showGizmo=true;
 		public Color gizmoColor=Color.blue;
+
 		void OnDrawGizmos(){
 			if(showGizmo){
 				Gizmos.color = gizmoColor;
@@ -121,10 +110,5 @@ namespace TDTK {
 				//~ }
 			}
 		}
-		
-	}
-	
+	}	
 }
-
-
-

@@ -13,9 +13,7 @@ namespace TDTK {
 		
 		private static int layerPlatform=27;
 		private static int layerTerrain=26;
-		
-		
-		
+
 		public static int LayerCreep(){ return layerCreep; }
 		public static int LayerCreepF(){ return layerCreepF; }
 		public static int LayerTower(){ return layerTower; }
@@ -26,5 +24,4 @@ namespace TDTK {
 		public static int LayerUI(){ return 5; }	//layer5 is named UI by Unity's default
 		
 	}
-
 }

@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 using UnityEditor;
-
 using System;
-
 using System.Collections;
 using System.Collections.Generic;
 
@@ -45,20 +43,6 @@ public class EditorUtilities : EditorWindow {
 		return xButtonStyle;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	public delegate void SetObjListCallback(List<GameObject> objHList, string[] objHLabelList);
 	
 	public static void GetObjectHierarchyList(GameObject obj, SetObjListCallback callback){
@@ -83,8 +67,7 @@ public class EditorUtilities : EditorWindow {
 		
 		callback(objHList, objHLabelList);
 	}
-	
-	
+
 	private static HierarchyList GetTransformInHierarchy(Transform transform, int depth){
 		HierarchyList hl=new HierarchyList();
 		
@@ -95,6 +78,7 @@ public class EditorUtilities : EditorWindow {
 		
 		return hl;
 	}
+
 	private static HierarchyList GetTransformInHierarchyRecursively(Transform transform, int depth){
 		HierarchyList hList=new HierarchyList();
 		depth+=1;
@@ -120,6 +104,4 @@ public class EditorUtilities : EditorWindow {
 		public List<Transform> ListT=new List<Transform>();
 		public List<string> ListName=new List<string>();
 	}
-	
-	
 }

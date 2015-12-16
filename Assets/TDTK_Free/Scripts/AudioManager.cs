@@ -12,21 +12,18 @@ namespace TDTK {
 		
 		private static float musicVolume=.75f;
 		private static float sfxVolume=.75f;
-
 		
 		private static AudioManager instance;
 		private GameObject thisObj;
 		private Transform thisT;
-		
-		
+
 		public static void Init(){
 			if(instance!=null) return;
 			GameObject obj=new GameObject();
 			obj.name="AudioManager";
 			obj.AddComponent<AudioManager>();
 		}
-		
-		
+
 		void Awake(){
 			if(instance!=null){
 				Destroy(gameObject);
@@ -40,7 +37,6 @@ namespace TDTK {
 			
 			DontDestroyOnLoad(thisObj);
 			
-
 			audioSourceList=new List<AudioSource>();
 			for(int i=0; i<10; i++){
 				GameObject obj=new GameObject();
@@ -58,11 +54,7 @@ namespace TDTK {
 			
 			AudioListener.volume=sfxVolume;
 		}
-		
-		
 
-		
-		
 		void OnEnable(){
 			SpawnManager.onNewWaveE += OnNewWave;
 			SpawnManager.onWaveClearedE += OnWaveCleared;
@@ -92,8 +84,7 @@ namespace TDTK {
 			UnitTower.onConstructionStartE -= OnTowerConstructing;
 			UnitTower.onConstructionCompleteE -= OnTowerConstructed;
 		}
-		
-		
+
 		void OnNewWave(int waveID){ if(newWaveSound!=null) _PlaySound(newWaveSound); }
 		void OnWaveCleared(int waveID){ if(waveClearedSound!=null) _PlaySound(waveClearedSound); }
 		
@@ -112,8 +103,7 @@ namespace TDTK {
 		void OnUnitDestroyed(Unit unit){
 			if(unit.IsTower() && towerDestroyedSound!=null) _PlaySound(towerDestroyedSound); 
 		}
-		
-		
+
 		public AudioClip newWaveSound;
 		public AudioClip waveClearedSound;
 		public AudioClip gameWonSound;
@@ -132,12 +122,7 @@ namespace TDTK {
 		public AudioClip fpsSwitchWeaponSound;
 		
 		public AudioClip perkPurchasedSound;
-		
-		
-		
-		
-		
-		
+
 		//check for the next free, unused audioObject
 		private int GetUnusedAudioSourceID(){
 			for(int i=0; i<audioSourceList.Count; i++){
@@ -145,27 +130,20 @@ namespace TDTK {
 			}
 			return 0;	//if everything is used up, use item number zero
 		}
-		
-		
+
 		//call to play a specific clip
 		public static void PlaySound(AudioClip clip){ 
 			if(instance==null) Init();
 			instance._PlaySound(clip);
 		}
+
 		public void _PlaySound(AudioClip clip){ 
 			int ID=GetUnusedAudioSourceID();
 			
 			audioSourceList[ID].clip=clip;
 			audioSourceList[ID].Play();
 		}
-		
-		
-		
-		
-		
-		
-		
-		
+
 		public static void SetSFXVolume(float val){
 			sfxVolume=val;
 			AudioListener.volume=val;
@@ -179,8 +157,4 @@ namespace TDTK {
 		public static float GetMusicVolume(){ return musicVolume; }
 		public static float GetSFXVolume(){ return sfxVolume; }
 	}
-
-
-
-
 }

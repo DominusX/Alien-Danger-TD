@@ -7,8 +7,7 @@ using TDTK;
 namespace TDTK {
 
 	public class TDTK : MonoBehaviour {
-		
-		
+
 		public delegate void NewWaveHandler(int waveID);
 		public static event NewWaveHandler onNewWaveE;				//inidcate a new wave has start spawning
 		
@@ -23,28 +22,20 @@ namespace TDTK {
 		
 		public delegate void SpawnTimerHandler(float time);
 		public static event SpawnTimerHandler onSpawnTimerE;		//call to indicate how long until next spawn
-		
-		
-		
+
 		public delegate void LifeHandler(int value);
 		public static event LifeHandler onLifeE;								//call when player's life has changed
 		
 		public delegate void GameOverHandler(bool playerWon);
 		public static event GameOverHandler onGameOverE;			//call when game is over
-		
-		
-		
+
 		public delegate void ResourceHandler(List<int> changedValueList);
 		public static event ResourceHandler onResourceE;				//call when the values on resource list are changed
-		
-		
-		
+
 		//onAddNewTowerE
 		public delegate void NewTowerHandler(UnitTower tower);
 		public static event NewTowerHandler onNewTowerE;
-		
-		
-		
+
 		public delegate void CreepDestroyedHandler(UnitCreep creep);
 		public static event CreepDestroyedHandler onCreepDestroyedE;		//indicate the creep has been destroyed
 		
@@ -65,7 +56,6 @@ namespace TDTK {
 		
 		public delegate void TowerDestroyedHandler(UnitTower tower);
 		public static event TowerDestroyedHandler onTowerDestroyedE;		//called when tower has been destroyed
-
 		
 		public static TDTK instance;
 		
@@ -75,8 +65,7 @@ namespace TDTK {
 			obj.name="_TDTK";
 			obj.AddComponent<TDTK>();
 		}
-		
-		
+
 		void Awake(){
 			if(instance!=null){
 				Destroy(gameObject);
@@ -85,8 +74,7 @@ namespace TDTK {
 			
 			instance=this;
 		}
-		
-		
+
 		void OnEnable(){
 			SpawnManager.onNewWaveE += OnNewWave;
 			SpawnManager.onWaveSpawnedE += OnWaveSpawned;
@@ -109,6 +97,7 @@ namespace TDTK {
 			UnitTower.onConstructionStartE += OnTowerConstructing;
 			UnitTower.onConstructionCompleteE += OnTowerConstructed;
 		}
+
 		void OnDisable(){
 			SpawnManager.onNewWaveE -= OnNewWave;
 			SpawnManager.onWaveSpawnedE -= OnWaveSpawned;
@@ -131,21 +120,23 @@ namespace TDTK {
 			UnitTower.onConstructionStartE -= OnTowerConstructing;
 			UnitTower.onConstructionCompleteE -= OnTowerConstructed;
 		}
-		
-		
-		
+
 		public static void OnNewWave(int waveID){
 			if(onNewWaveE!=null) onNewWaveE(waveID);
 		}
+
 		public static void OnWaveSpawned(int waveID){
 			if(onWaveSpawnedE!=null) onWaveSpawnedE(waveID);
 		}
+
 		public static void OnWaveCleared(int waveID){
 			if(onWaveClearedE!=null) onWaveClearedE(waveID);
 		}
+
 		public static void OnEnableSpawn(){
 			if(onEnableSpawnE!=null) onEnableSpawnE();
 		}
+
 		public static void OnSpawnTimer(float timer){
 			if(onSpawnTimerE!=null) onSpawnTimerE(timer);
 		}
@@ -153,6 +144,7 @@ namespace TDTK {
 		public static void OnLife(int valueChanged){
 			if(onLifeE!=null) onLifeE(valueChanged);
 		}
+
 		public static void OnGameOver(bool playerWon){
 			if(onGameOverE!=null) onGameOverE(playerWon);
 		}
@@ -177,22 +169,21 @@ namespace TDTK {
 		public static void OnCreepDestination(UnitCreep creep){
 			if(onCreepDestinationE!=null) onCreepDestinationE(creep);
 		}
-		
-		
+
 		public static void OnTowerSold(UnitTower tower){
 			if(onTowerSoldE!=null) onTowerSoldE(tower);
 		}
+
 		public static void OnTowerUpgraded(UnitTower tower){
 			if(onTowerUpgradedE!=null) onTowerUpgradedE(tower);
 		}
+
 		public static void OnTowerConstructing(UnitTower tower){
 			if(onTowerConstructingE!=null) onTowerConstructingE(tower);
 		}
+
 		public static void OnTowerConstructed(UnitTower tower){
 			if(onTowerConstructedE!=null) onTowerConstructedE(tower);
 		}
-		
-		
 	}
-
 }

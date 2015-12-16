@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-
 using System.Collections;
 using System.Collections.Generic;
 
@@ -18,17 +17,14 @@ namespace TDTK {
 		
 		public float fastForwardTimeScale=4;
 		public static float GetFFTime(){ return instance.fastForwardTimeScale; }
-		
-		
+
 		public bool disableTextOverlay=false;
 		public static bool DisableTextOverlay(){ return instance.disableTextOverlay; }
-		
-		
+
 		public bool pauseGameInPerkMenu=true;
 		public static bool PauseGameInPerkMenu(){ return instance.pauseGameInPerkMenu; }
-		
-
 		public static UI instance;
+
 		void Awake(){
 			instance=this;
 			
@@ -48,6 +44,7 @@ namespace TDTK {
 			
 			BuildManager.onAddNewTowerE += OnNewTower;	//add new tower via perk
 		}
+
 		void OnDisable(){
 			GameControl.onGameOverE -= OnGameOver;
 			
@@ -59,8 +56,8 @@ namespace TDTK {
 		}
 		
 		void OnGameOver(bool playerWon){ StartCoroutine(_OnGameOver(playerWon)); }
-		IEnumerator _OnGameOver(bool playerWon){
-			UIBuildButton.Hide();
+			IEnumerator _OnGameOver(bool playerWon){
+				UIBuildButton.Hide();
 			
 			yield return new WaitForSeconds(1.0f);
 			UIGameOverMenu.Show(playerWon);
@@ -71,8 +68,7 @@ namespace TDTK {
 			
 			if(selectedTower==unit.GetUnitTower()) ClearSelectedTower();
 		}
-		
-		
+
 		// Update is called once per frame
 		void Update () {
 			if(GameControl.GetGameState()==_GameState.Over) return;
@@ -105,9 +101,7 @@ namespace TDTK {
 				}
 			}
 		}
-		
-		
-		
+
 		void SelectTower(UnitTower tower){
 			selectedTower=tower;
 			
@@ -116,6 +110,7 @@ namespace TDTK {
 			
 			UITowerInfo.Show(selectedTower, true);
 		}
+
 		public static void ClearSelectedTower(){
 			if(instance.selectedTower==null) return;
 			instance.selectedTower=null;
@@ -125,13 +120,9 @@ namespace TDTK {
 		
 		public static UnitTower GetSelectedTower(){ return instance.selectedTower; }
 		
-		
-		
-		
 		void OnNewTower(UnitTower newTower){
 			UIBuildButton.AddNewTower(newTower);
 		}
 		
 	}
-
 }

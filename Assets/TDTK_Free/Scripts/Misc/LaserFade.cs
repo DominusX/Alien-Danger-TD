@@ -25,9 +25,7 @@ public class LaserFade : MonoBehaviour {
 		}
 		lineR.materials[0].SetColor("_TintColor", new Color(.5f, .5f, .5f, 0));
 	}
-	
-	
-	
+
 	public Vector2 uvAnimationRate = new Vector2( 1.0f, 0.0f );
     Vector2 uvOffset = Vector2.zero;
 

@@ -21,6 +21,5 @@ public class Hover : MonoBehaviour {
 	void Update () {
 		float hover=magnitude*(1+Mathf.Sin(Time.time*frequency+offset));
 		thisT.localPosition=new Vector3(thisT.localPosition.x, anchor+hover, thisT.localPosition.z);
-	}
-	
+	}	
 }

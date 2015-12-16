@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,25 +6,15 @@ using UnityEngine.UI;
 
 public class ScoreboardView : MonoBehaviour {
 
-
     public Text txt;
 	string scores = " ";
 	string newline="\n";
 	bool isPrinted = false;
-	
-	void Start () {
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
-	}
 
 	void OnGUI() {
 		if (GlobalScoreBoard.topScores.Count == 5 &&!isPrinted) {
 			printScores();
 			isPrinted=true;
-			Debug.Log("Executed/ran  once");
 		}
 	}
 
@@ -38,5 +28,4 @@ public class ScoreboardView : MonoBehaviour {
 		txt.text = player1 + player2 + player3 + player4 + player5;
 		
 	}
-	
 }

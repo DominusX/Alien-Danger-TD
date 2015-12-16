@@ -62,8 +62,7 @@ namespace TDTK {
 			//we are going to just iterate thru the pathlist and assign them to each subwave. 
 			//So here we introduce an offset so it doesnt always start from the first path in the list
 			int startingPathID=Random.Range(0, pathList.Count);
-			
-			
+
 			for(int i=0; i<_subWaveCount; i++){
 				SubWave subWave=new SubWave();
 				
@@ -127,8 +126,6 @@ namespace TDTK {
 		}
 	}
 
-	
-	
 	[System.Serializable]
 	public class ProceduralUnitSetting{
 		public GameObject unit;
@@ -167,6 +164,4 @@ namespace TDTK {
 		//public float devMultiplier=0.2f;	//10% deviation each iteration
 		//currentValue=currentValue*(incMultiplier+Random.Range(-devMultiplier, devMultiplier));
 	}
-	
-	
 }

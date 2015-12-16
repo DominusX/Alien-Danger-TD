@@ -64,24 +64,18 @@ namespace TDTK {
 			
 			distFromDestination=CalculateDistFromDestination();
 		}
-		
-		
-		
-		
+
 		public override void Update() {
 			base.Update();
 		}
-		
-		
-		
+
 		public float rotateSpd=10;
 		public float moveSpeed=3;
 		
 		public PathTD path;
 		public List<Vector3> waypointList=new List<Vector3>();
 		public int waypointID=1;
-		
-		
+
 		public override void FixedUpdate(){
 			base.FixedUpdate();
 			
@@ -122,9 +116,7 @@ namespace TDTK {
 			
 			return false;
 		}
-		
-		
-		
+
 		void ReachDestination(){
 			if(path.loop){
 				if(onDestinationE!=null) onDestinationE(this);
@@ -146,8 +138,7 @@ namespace TDTK {
 			yield return new WaitForSeconds(duration);
 			ObjectPoolManager.Unspawn(thisObj);
 		}
-		
-		
+
 		public float CreepDestroyed(){
 			List<int> rscGain=new List<int>();
 			for(int i=0; i<valueRscMin.Count; i++){
@@ -159,13 +150,11 @@ namespace TDTK {
 			
 			return 0;
 		}
-		
-		
+
 		private UnitCreepAnimation aniInstance;
 		public void SetAnimationComponent(UnitCreepAnimation ani){ aniInstance=ani; }
 		public void Hit(){ if(aniInstance!=null) aniInstance.PlayHit(); }
-		
-		
+
 		public float GetMoveSpeed(){ return moveSpeed * slowMultiplier; }
 		
 		public float distFromDestination=0;
@@ -179,34 +168,5 @@ namespace TDTK {
 			
 			return dist;
 		}
-		
-		
-		
-		/*
-		//for unity-navmesh based navigation, not in used (reason: requird navmesh carving - pro only feature)
-		private NavMeshAgent agent;
-		private Vector3 tgtPos;
-		public void InitNavMesh(PathTD p, int ID, int wID){
-			Init();
-			
-			path=p;
-			instanceID=ID;
-			waveID=wID;
-			
-			tgtPos=path.wpList[path.wpList.Count-1].position;
-			agent = thisObj.GetComponent<NavMeshAgent>();
-			agent.SetDestination(tgtPos);
-			
-			StartCoroutine(CheckDestination());
-		}
-		IEnumerator CheckDestination(){
-			while(!stunned && !dead){
-				tgtPos.y=thisT.pos.y;
-				if(Vector3.Distance(tgtPos, thisT.position)<0.5f) ReachDestination();
-				yield return null;
-			}
-		}
-		*/
 	}
-	
 }

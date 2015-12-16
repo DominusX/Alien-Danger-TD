@@ -5,9 +5,7 @@ using System.Collections.Generic;
 using TDTK;
 
 namespace TDTK {
-	
-	
-	
+
 	public class BuildManager : MonoBehaviour {
 		
 		public delegate void AddNewTowerHandler(UnitTower tower);
@@ -27,40 +25,28 @@ namespace TDTK {
 		
 		public enum _CursorIndicatorMode{All, ValidOnly, None}
 		public _CursorIndicatorMode cursorIndicatorMode=_CursorIndicatorMode.All;
-		
-		
+
 		public bool autoSearchForPlatform=false;
-		
-		
-		
-		
-		
 		
 		private static BuildManager instance;
 		private static BuildInfo buildInfo;
 		private int towerCount=0;
 		public static int GetTowerCount(){ return instance.towerCount; }
-		
-		
+
 		public void Init(){
 			instance=this;
-			
 			gridSize=Mathf.Max(0.25f, gridSize);
 			_gridSize=gridSize;
-			
 			buildInfo=null;
-			
 			InitTower();
 			InitPlatform();
 		}
 		
 		public GameObject indicatorBuildPoint;
 		public GameObject indicatorCursor;
-		
 		private Renderer indicatorBuildPointRen;
 		private Renderer indicatorCursorRen;
-		
-		
+
 		void Start(){
 			if(cursorIndicatorMode!=_CursorIndicatorMode.None){
 				if(indicatorBuildPoint!=null){
@@ -100,7 +86,6 @@ namespace TDTK {
 				}
 			}
 		}
-		
 
 		// Use this for initialization
 		void InitPlatform() {
@@ -117,8 +102,7 @@ namespace TDTK {
 				buildPlatforms[i].VerifyTowers(towerList);
 			}
 		}
-		
-		
+
 		void FormatPlatform(Transform platformT){
 			//clear the platform of any unneeded collider
 			ClearPlatformColliderRecursively(platformT);
@@ -153,26 +137,14 @@ namespace TDTK {
 				}
 			}
 		}
-		
-		
+
 		public static void AddNewTower(UnitTower newTower){
 			if(instance.towerList.Contains(newTower)) return;
 			instance.towerList.Add(newTower);
 			instance.AddNewSampleTower(newTower);
 			if(onAddNewTowerE!=null) onAddNewTowerE(newTower);
 		}
-		
-		
-		
-		
-		
-		
-		// Update is called once per frame
-		void Update () {
-			
-		}
-		
-		
+
 		static public void ClearBuildPoint(){
 			//Debug.Log("ClearBuildPoint");
 			buildInfo=null;
@@ -182,8 +154,7 @@ namespace TDTK {
 		static public void ClearIndicator(){
 			if(instance.indicatorBuildPoint!=null) instance.indicatorBuildPoint.SetActive(false);
 		}
-		
-		
+
 		static public Vector3 GetTilePos(Transform platformT, Vector3 hitPos){
 			//check if the row count is odd or even number
 			float remainderX=Utility.GetWorldScale(platformT).x/_gridSize%2;
@@ -286,14 +257,15 @@ namespace TDTK {
 			instance.indicatorCursor.transform.position=tower.thisT.position;
 			instance.indicatorCursor.transform.rotation=tower.thisT.rotation;
 		}
+
 		public static void HideIndicator(){
 			instance.indicatorCursor.SetActive(false);
 		}
-		
-		
+
 		public static _TileStatus CheckBuildPoint(Vector3 pointer, int footprint=-1, int ID=-1){ 
 			return instance._CheckBuildPoint(pointer, footprint, ID);
 		}
+
 		public _TileStatus _CheckBuildPoint(Vector3 pointer, int footprint=-1, int ID=-1){ 
 			_TileStatus status=_TileStatus.Available;
 			BuildInfo newBuildInfo=new BuildInfo();
@@ -366,9 +338,7 @@ namespace TDTK {
 				else return _TileStatus.NoPlatform;
 			}
 			else return _TileStatus.NoPlatform;
-			
-			
-			
+
 			if(buildInfo!=null && cursorIndicatorMode!=_CursorIndicatorMode.None){
 				if(status==_TileStatus.Available) indicatorBuildPointRen.material.SetColor("_TintColor", new Color(0, 1, 0, 1));
 				else indicatorBuildPointRen.material.SetColor("_TintColor", new Color(1, 0, 0, 1));
@@ -384,10 +354,7 @@ namespace TDTK {
 			
 			return status;
 		}
-		
-		
-		
-		
+
 		//called when a tower building is initated in DragNDrop, use the sample tower as the model and set it in DragNDrop mode
 		public static string BuildTowerDragNDrop(UnitTower tower){ return instance._BuildTowerDragNDrop(tower); }
 		public string _BuildTowerDragNDrop(UnitTower tower){
@@ -405,10 +372,9 @@ namespace TDTK {
 				return "";
 			}
 			
-			return "Insufficient Resource   "+suffCost;
+			return "Insufficient Resource   " + suffCost;
 		}
-		
-		
+
 		//called by any external component to build tower, uses buildInfo
 		public static string BuildTower(UnitTower tower){
 			if(buildInfo==null) return "Select a Build Point First";
@@ -434,8 +400,7 @@ namespace TDTK {
 			
 			return "Insufficient Resource";
 		}
-		
-		
+
 		public static void PreBuildTower(UnitTower tower){
 			PlatformTD platform=null;
 			LayerMask mask=1<<LayerManager.LayerPlatform();
@@ -451,12 +416,7 @@ namespace TDTK {
 			
 			tower.InitTower(instance.towerCount+=1);
 		}
-		
-		
-		
-		
-		
-		
+
 		private List<UnitTower> sampleTowerList=new List<UnitTower>();
 		private int currentSampleID=-1;
 		public void InitiateSampleTowerList(){
@@ -466,10 +426,12 @@ namespace TDTK {
 				sampleTowerList.Add(towerInstance);
 			}
 		}
+
 		public void AddNewSampleTower(UnitTower newTower){
 			UnitTower towerInstance=CreateSampleTower(newTower);
 			sampleTowerList.Add(towerInstance);
 		}
+
 		public UnitTower CreateSampleTower(UnitTower towerPrefab){
 			GameObject towerObj=(GameObject)Instantiate(towerPrefab.gameObject);
 			
@@ -516,10 +478,6 @@ namespace TDTK {
 			currentSampleID=-1;
 		}
 		
-		
-		
-		
-		
 		public static BuildInfo GetBuildInfo(){
 			return buildInfo;
 		}
@@ -536,14 +494,5 @@ namespace TDTK {
 		public static float GetGridSize(){
 			return _gridSize;
 		}
-		
-		
 	}
-	
-
-
-
-	
-
-
 }

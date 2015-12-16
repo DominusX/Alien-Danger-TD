@@ -50,8 +50,7 @@ namespace TDTK {
 		public bool IsCreep(){ return subClass==_UnitSubClass.Creep ? true : false; }
 		public UnitTower GetUnitTower(){ return unitT; }
 		public UnitCreep GetUnitCreep(){ return unitC; }
-		
-		
+
 		public float defaultHP=10;
 		public float fullHP=10;
 		public float HP=10;
@@ -65,20 +64,17 @@ namespace TDTK {
 		public float shieldRegenRate=1;
 		public float shieldStaggerDuration=1;
 		private float currentShieldStagger=0;
-		
-		
+
 		//public bool immuneToDmg=false;
 		public bool immuneToCrit=false;
 		public bool immuneToSlow=false;
 		public bool immuneToStun=false;
-		
-		
+
 		//public int level=1;
 		
 		public int currentActiveStat=0;
 		[HideInInspector] public List<UnitStat> stats=new List<UnitStat>();
-		
-		
+
 		public bool dead=false;
 		public bool stunned=false;
 		private float stunDuration=0;
@@ -87,8 +83,7 @@ namespace TDTK {
 		public List<Slow> slowEffectList=new List<Slow>();
 		
 		public List<Buff> buffEffect=new List<Buff>();
-		
-		
+
 		[HideInInspector] public Transform localShootObjectT;
 		[HideInInspector] public ShootObject localShootObject;		//get from stats and store locally, just in case the upgraded stats doesnt have any shootObject assigned
 		[HideInInspector] public List<Transform> shootPoints=new List<Transform>();
@@ -136,9 +131,7 @@ namespace TDTK {
 			
 			//if(onNewUnitE!=null) onNewUnitE(this);
 		}
-		
-		
-		
+
 		public virtual void Start() {
 		
 		}
@@ -146,6 +139,7 @@ namespace TDTK {
 		public virtual void OnEnable() {
 		
 		}
+
 		public virtual void OnDisable() {
 		
 		}
@@ -153,6 +147,7 @@ namespace TDTK {
 		public virtual void Update() {
 			
 		}
+
 		public virtual void FixedUpdate() {
 			//HP=Mathf.Min(fullHP, HP+Time.deltaTime*4);
 			
@@ -172,8 +167,7 @@ namespace TDTK {
 			
 			currentHPStagger-=Time.fixedDeltaTime;
 			currentShieldStagger-=Time.fixedDeltaTime;
-			
-			
+
 			if(target!=null && !IsInConstruction() && !stunned){
 				if(turretObject!=null){
 					if(rotateTurretAimInXAxis && barrelObject!=null){
@@ -216,15 +210,11 @@ namespace TDTK {
 			if(IsCreep() && target==null && turretObject!=null && !stunned){
 				turretObject.localRotation=Quaternion.Slerp(turretObject.localRotation, Quaternion.identity, turretRotateSpeed*Time.deltaTime*0.25f);
 			}
-			
-			
+
 			//FixedTimeScanForTarget();
 			//FixedTimeTurret();
 		}
-		
-		
-		
-		
+
 		public Transform turretObject;
 		public Transform barrelObject;
 		public bool rotateTurretAimInXAxis=true;
@@ -243,8 +233,7 @@ namespace TDTK {
 		private float turretRotateSpeed=12;
 		private float aimTolerance=5;
 		private bool targetInLOS=false;
-		
-		
+
 		public Unit target;
 		
 		public enum _TargetPriority{Nearest, Weakest, Toughest, First, Random};
@@ -254,8 +243,7 @@ namespace TDTK {
 			if(nextPrior>=5) nextPrior=0;
 			targetPriority=(_TargetPriority)nextPrior;
 		}
-		
-		
+
 		protected LayerMask maskTarget=0;
 		public LayerMask GetTargetMask(){ return maskTarget; }
 		
@@ -294,8 +282,7 @@ namespace TDTK {
 							Unit unit=cols[i].gameObject.GetComponent<Unit>();
 							if(!unit.dead) tgtList.Add(unit);
 						}
-						
-						
+
 						if(tgtList.Count>0){
 							if(targetPriority==_TargetPriority.Random) target=tgtList[Random.Range(0, tgtList.Count-1)];
 							else if(targetPriority==_TargetPriority.Nearest){
@@ -344,16 +331,11 @@ namespace TDTK {
 					if(target.dead || dist>GetRange()) target=null;
 				}
 			}
-			
 		}
-		
-		
-		
-		
+
 		public delegate float PlayShootAnimation();
 		public PlayShootAnimation playShootAnimation;
-		
-		
+
 		public IEnumerator TurretRoutine(){
 			for(int i=0; i<shootPoints.Count; i++){
 				if(shootPoints[i]==null){ shootPoints.RemoveAt(i);	i-=1;	}
@@ -458,12 +440,12 @@ namespace TDTK {
 			
 			slowMultiplier=Mathf.Max(0, slowMultiplier);
 		}
+
 		void ResetSlow(){
 			slowEffectList=new List<Slow>();
 			ResetSlowMultiplier();
 		}
-		
-		
+
 		public void ApplyDot(Dot dot){ StartCoroutine(DotRoutine(dot)); }
 		IEnumerator DotRoutine(Dot dot){
 			int count=(int)Mathf.Floor(dot.duration/dot.interval);
@@ -474,8 +456,7 @@ namespace TDTK {
 				if(HP<=0){ Dead();	break; }
 			}
 		}
-		
-		
+
 		//for ability and what not
 		public void ApplyDamage(float dmg){
 			DamageHP(dmg);
@@ -485,8 +466,7 @@ namespace TDTK {
 			new TextOverlay(thisT.position, value.ToString("f0"), new Color(0f, 1f, .4f, 1f));
 			HP=Mathf.Clamp(HP+value, 0, fullHP);
 		}
-		
-		
+
 		//called when unit take damage
 		void DamageHP(float dmg){
 			HP-=dmg;
@@ -496,9 +476,7 @@ namespace TDTK {
 			currentHPStagger=HPStaggerDuration;
 			currentShieldStagger=shieldStaggerDuration;
 		}
-		
-		
-		
+
 		public List<Unit> buffedUnit=new List<Unit>();
 		private  bool supportRoutineRunning=false;
 		public IEnumerator SupportRoutine(){
@@ -548,6 +526,7 @@ namespace TDTK {
 				}
 			}
 		}
+
 		public void UnbuffAll(){
 			for(int i=0; i<buffedUnit.Count; i++){
 				buffedUnit[i].UnBuff(GetBuff());
@@ -564,6 +543,7 @@ namespace TDTK {
 			activeBuffList.Add(buff);
 			UpdateBuffStat();
 		}
+
 		public void UnBuff(Buff buff){
 			if(!activeBuffList.Contains(buff)){
 				//Debug.Log("not contain buff");
@@ -590,6 +570,7 @@ namespace TDTK {
 				if(regenHPBuff<buff.regenHP) regenHPBuff=buff.regenHP;
 			}
 		}
+
 		void ResetBuff(){
 			activeBuffList=new List<Buff>();
 			damageBuffMul=0.0f;
@@ -598,9 +579,9 @@ namespace TDTK {
 			criticalBuffMod=0f;
 			regenHPBuff=0f;
 		}
-		
-		
+
 		public GameObject deadEffectObj;
+
 		public void Dead(){
 			dead=true;
 			
@@ -620,18 +601,10 @@ namespace TDTK {
 			yield return new WaitForSeconds(delay);
 			ObjectPoolManager.Unspawn(thisObj);
 		}
-		
-		
+
 		public Transform GetTargetT(){
 			return targetPoint!=null ? targetPoint : thisT; 
 		}
-		
-		
-		
-		
-		
-		
-		
 		
 		private float GetFullHP(){ return defaultHP; }
 		private float GetFullShield(){ return defaultShield; }
@@ -653,12 +626,7 @@ namespace TDTK {
 		public Stun GetStun(){ return stats[currentActiveStat].stun; }
 		public Slow GetSlow(){ return stats[currentActiveStat].slow; }
 		public Dot 	GetDot(){ return stats[currentActiveStat].dot; }
-		
-		
-		
-		
-		
-		
+
 		public int GetShootPointCount(){ return shootPoints.Count; }
 		
 		public Transform GetShootObjectT(){
@@ -669,9 +637,7 @@ namespace TDTK {
 		public List<int> GetResourceGain(){ return stats[currentActiveStat].rscGain; }
 		
 		public Buff GetBuff(){ return stats[currentActiveStat].buff; }
-		
-		
-		
+
 		//public string GetDespStats(){ return stats[currentActiveStat].desp; }
 		public string GetDespGeneral(){ return desp; }
 		
@@ -733,13 +699,11 @@ namespace TDTK {
 			
 			return text;
 		}
-		
-		
+
 		public float GetDistFromDestination(){ return unitC!=null ? unitC._GetDistFromDestination() : 0; }
 		
 		public bool IsInConstruction(){ return IsTower() ? unitT._IsInConstruction() : false; }
-		
-		
+
 		//used by abilities
 		private float dmgABMul=0;
 		public void ABBuffDamage(float value, float duration){ StartCoroutine(ABBuffDamageRoutine(value, duration)); }
@@ -748,6 +712,7 @@ namespace TDTK {
 			yield return new WaitForSeconds(duration);
 			dmgABMul-=value;
 		}
+
 		private float rangeABMul=0;
 		public void ABBuffRange(float value, float duration){ StartCoroutine(ABBuffDamageRoutine(value, duration)); }
 		IEnumerator ABBuffRangeRoutine(float value, float duration){
@@ -755,6 +720,7 @@ namespace TDTK {
 			yield return new WaitForSeconds(duration);
 			rangeABMul-=value;
 		}
+
 		private float cdABMul=0;
 		public void ABBuffCooldown(float value, float duration){ StartCoroutine(ABBuffCooldownRoutine(value, duration)); }
 		IEnumerator ABBuffCooldownRoutine(float value, float duration){
@@ -762,68 +728,11 @@ namespace TDTK {
 			yield return new WaitForSeconds(duration);
 			cdABMul-=value;
 		}
-		
-		
-		
+
 		void OnDrawGizmos(){
 			if(target!=null){
 				if(IsCreep()) Gizmos.DrawLine(transform.position, target.transform.position);
 			}
 		}
-		
-		
-		
-		
-		
-		
-		
-		//following function are used to replace ScanForTargetRoutine() and TurretRoutine() when the game are time sensitive, where the outcome must be same regardless of time scale
-		/*
-		private int targetFreqCount=0;
-		void FixedTimeScanForTarget(){
-			targetFreqCount+=1;
-			if(targetFreqCount==10) targetFreqCount=0;
-			else return;
-			
-			ScanForTarget();
-		}
-		
-		private float attackCD=-1;
-		private float reloadCD=-1;
-		private int currentAmmo=-1;		//when enabled, make sure to set it reset it in init(), refer to turretRoutine
-		void FixedTimeTurret(){
-			if(reloadCD>0) reloadCD-=Time.fixedDeltaTime;
-			if(attackCD>0) attackCD-=Time.fixedDeltaTime;
-			
-			if(attackCD>0 || reloadCD>0) return;
-			
-			if(target==null || stunned || IsInConstruction() || !targetInLOS) return;
-			
-			Unit currentTarget=target;
-			
-			AttackInstance attInstance=new AttackInstance();
-			attInstance.srcUnit=this;
-			attInstance.tgtUnit=currentTarget;
-			attInstance.Process();
-			
-			for(int i=0; i<shootPoints.Count; i++){
-				Transform sp=shootPoints[i];
-				Transform objT=(Transform)Instantiate(GetShootObjectT(), sp.position, sp.rotation);
-				ShootObject shootObj=objT.GetComponent<ShootObject>();
-				shootObj.Shoot(attInstance, sp);
-			}
-			
-			if(currentAmmo>-1){
-				currentAmmo-=1;
-				if(currentAmmo==0){
-					reloadCD=GetReloadDuration();
-					currentAmmo=GetClipSize();
-				}
-			}
-			
-			attackCD=GetCooldown();
-		}
-		*/
 	}
-
 }

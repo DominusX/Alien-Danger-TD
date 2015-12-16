@@ -14,8 +14,7 @@ public class ObjectPoolManager : MonoBehaviour{
 		if(instance!=null) return;
 		instance=this;
 	}
-	
-	
+
 	public static int New(Transform objT, int count=0){ return 0; }
 	public static int New(GameObject obj, int count=0){ return 0; }
 	
@@ -32,12 +31,10 @@ public class ObjectPoolManager : MonoBehaviour{
 	public static GameObject Spawn(GameObject obj, Vector3 pos, Quaternion rot){
 		return (GameObject)Instantiate(obj, pos, rot);
 	}
-	
-	
+
 	public static void Unspawn(Transform objT){ Unspawn(objT.gameObject); }
 	public static void Unspawn(GameObject obj){ Destroy(obj); }
-	
-	
+
 	public static void Init(){
 		if(instance!=null) return;
 		
@@ -45,10 +42,8 @@ public class ObjectPoolManager : MonoBehaviour{
 		obj.name="ObjectPoolManager";
 		instance=obj.AddComponent<ObjectPoolManager>();
 	}
+
 	public static void ClearAll(){
 		
 	}
-	
-	
 }
-

@@ -7,14 +7,13 @@ using System.Linq;
 using UnityEngine.UI;
 
 public class GlobalScoreBoard : MonoBehaviour {
-	//create struct to hold the player name and score
-	static int currentTopScores = 9999; //this will keep the currentTopScore in memory between the scenes
+	static int currentTopScores = 9999;
 	public static List<ScoreEntry> topScores = new List<ScoreEntry>();
-	
-	public  struct ScoreEntry {
+
+	public struct ScoreEntry {
 		public int PlayerScore;
 		public string playerName;
-	}//struct
+	}
 
 	void Awake(){
 
@@ -31,12 +30,13 @@ public class GlobalScoreBoard : MonoBehaviour {
 				Debug.Log("init finished");
 			}
 		});
-
 	}
+
 	//setting the currentTopScore
 	public void setCurrentScore(int score){
 		currentTopScores = score;
 	}
+
 	//checking the highScore
 	public bool isHighScore(int score){
 		var topFive = topScores.Take (5);
@@ -46,22 +46,25 @@ public class GlobalScoreBoard : MonoBehaviour {
 			return true;
 		}
 	}
+
 	public void ClaimCurrentScore(string name , int score){
-		
 		ParseObject gameScore = new ParseObject ("GameScore");
 		gameScore ["playerName"] = name;
 		gameScore ["PlayerScore"] = score;
 		gameScore.SaveAsync ();
 	}
+
 	public string getPlayerName(){
 		//use playerPrefs to load the playername
 		return "playerName";
 	}
+
 	public int getCurrentTopScore(){
 		//use playerpref to get the current score..
 		return 777;
 	}
-	public  List<ScoreEntry> GetScores(){
+
+	public List<ScoreEntry> GetScores(){
 		return topScores;
 	}
 }

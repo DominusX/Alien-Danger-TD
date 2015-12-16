@@ -24,12 +24,10 @@ namespace TDTK {
 		public List<LineRenderer> lineList=new List<LineRenderer>();
 		
 		private List<TrailRenderer> trailList=new List<TrailRenderer>();
-		
-		
+
 		public GameObject shootEffect;
 		public GameObject hitEffect;
-		
-		
+
 		private AttackInstance attInstance;
 		
 		private GameObject thisObj;
@@ -53,23 +51,13 @@ namespace TDTK {
 			if(hitEffect!=null) ObjectPoolManager.New(hitEffect);
 		}
 		
-		void Start () {
-		
-		}
-		
 		void OnEnable(){
 			for(int i=0; i<trailList.Count; i++) StartCoroutine(ClearTrail(trailList[i]));
 		}
 		void OnDisable(){
 			
 		}
-		
-		
-		
-		
-		
-		
-		
+
 		public void Shoot(AttackInstance attInst=null, Transform sp=null){
 			if(attInst==null || attInst.tgtUnit==null){
 				ObjectPoolManager.Unspawn(thisObj);
@@ -95,28 +83,22 @@ namespace TDTK {
 			if(type==_ShootObjectType.Effect) StartCoroutine(EffectRoutine());
 		}
 		
-		
-		
-		
-		
-		
 		private Unit target;
 		private Vector3 targetPos;
 		public float maxShootAngle=30f;
 		public float maxShootRange=0.5f;
 		private float hitThreshold=0.15f;		
-		
-		
+
 		public float GetMaxShootRange(){
 			if(type==_ShootObjectType.Projectile || type==_ShootObjectType.Missile) return maxShootRange;
 			return 1;
 		}
+
 		public float GetMaxShootAngle(){
 			if(type==_ShootObjectType.Projectile || type==_ShootObjectType.Missile) return maxShootAngle;
 			return 0;
 		}
-		
-		
+
 		IEnumerator EffectRoutine(){
 			yield return new WaitForSeconds(0.125f);
 			Hit();
@@ -146,8 +128,7 @@ namespace TDTK {
 				yield return null;
 			}
 		}
-		
-		
+
 		IEnumerator ProjectileRoutine(){
 			if(shootEffect!=null) Instantiate(shootEffect, thisT.position, thisT.rotation);
 			
@@ -206,8 +187,7 @@ namespace TDTK {
 				yield return new WaitForSeconds(Time.fixedDeltaTime);
 			}
 		}
-		
-		
+
 		public float shootAngleY=20;
 		private float missileSpeedModifier=1;
 		IEnumerator MissileSpeedRoutine(){
@@ -264,11 +244,7 @@ namespace TDTK {
 				yield return new WaitForSeconds(Time.fixedDeltaTime);
 			}
 		}
-		
-		
-		
-		
-		
+
 		void Hit(){
 			hit=true;
 			
@@ -308,15 +284,7 @@ namespace TDTK {
 			ObjectPoolManager.Unspawn(thisObj);
 			//Destroy(thisObj);
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 		IEnumerator ClearTrail(TrailRenderer trail){
 			if(trail==null) yield break;
 			float trailDuration=trail.time;
@@ -324,9 +292,5 @@ namespace TDTK {
 			yield return null;
 			trail.time=trailDuration;
 		}
-		
-		
-		
 	}
-
 }

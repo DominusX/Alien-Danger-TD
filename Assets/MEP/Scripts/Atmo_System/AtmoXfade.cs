@@ -4,7 +4,6 @@ using System.Collections;
 
 public class AtmoXfade : MonoBehaviour 
 {
-	
 	public Material skyMat;
 	public Color skyBright = Color.grey;
 	public Color skyDark = Color.black;
@@ -33,6 +32,7 @@ public class AtmoXfade : MonoBehaviour
 		FadeDark,
 		FadeBright
 	}
+
 	public FadeState fadeState = FadeState.FadeBright;
 	
 	public float fadeTime = 80.0f; // 400 
@@ -54,10 +54,7 @@ public class AtmoXfade : MonoBehaviour
 			RenderSettings.fog = false;
 		curIntensity = maxLightIntensity;
 	}
-	
-	
-	
-	
+
 	void OnTriggerEnter (Collider c)
 	{
 		if (c.sharedMaterial != null && c.sharedMaterial.name == "Player")
@@ -75,9 +72,7 @@ public class AtmoXfade : MonoBehaviour
 			StartCoroutine (FadeBright());
 		}
 	}
-	
-	
-	
+
 	IEnumerator FadeDark ()
 	{
 		float t = 0.00001f;

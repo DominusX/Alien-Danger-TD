@@ -1,25 +1,42 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class ClaimHighScore : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		//ClaimScore ();
-	
-	}
-	static void ClaimScore (){
-		GlobalScoreBoard g = new GlobalScoreBoard ();
-		if (g.isHighScore (700)) {
-			//check if user current score > the one saved in player pref then only claim the highScore..
-			g.ClaimCurrentScore ("Wow Score", 99999);
-		} else {
-			Debug.Log("Not in top 5 ");
+	public static Boolean scoreSubmitted = false;
+
+	/* Setting & submitting score to global scoring system "Parse"
+	 * A dll handles the request coming to and from the global scores cloud storage
+	 */
+	public static void ClaimScore() {
+		
+		GlobalScoreBoard globalScores = new GlobalScoreBoard ();
+		
+		string playerName = null;
+		int playerScore = 0;
+
+		if(!scoreSubmitted){
+			try{
+				if(globalScores.isHighScore(PlayerPrefs.GetInt ("Player Score"))){
+					
+					playerName = PlayerPrefs.GetString ("Player Name");
+					playerScore = PlayerPrefs.GetInt ("Player Score");
+					
+					if(playerName.Equals ("") || playerName == null)
+						playerName = "Anonymous";
+					
+					globalScores.ClaimCurrentScore(playerName, playerScore);
+					
+					print ("Player " + playerName + " Score Saved!");
+				}
+				else{
+					print ("Player " + playerName + " Score Not in Top Five!");
+				}
+			}
+			catch(Exception error){
+				print ("Error: " + error);
+			}
 		}
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 }

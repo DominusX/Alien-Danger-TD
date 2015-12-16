@@ -49,8 +49,7 @@ namespace TDTK {
 
 		public Transform rangeIndicator;
 		private GameObject rangeIndicatorObj;
-		
-		
+
 		public string nextScene="";
 		public string mainMenu="Menu";
 		public static void LoadNextScene(){ if(instance.nextScene!="") Load(instance.nextScene); }
@@ -61,10 +60,7 @@ namespace TDTK {
 			//}
 			Application.LoadLevel("Menu");
 		}
-		
-		
-		
-		
+
 		public bool loadAudioManager=false;
 		
 		private float timeStep=0.015f;
@@ -104,12 +100,9 @@ namespace TDTK {
 			
 			Time.timeScale=1;
 		}
-
-
+		
 		// Use this for initialization
 		void Start () {
-			
-			
 			UnitTower[] towers = FindObjectsOfType(typeof(UnitTower)) as UnitTower[];
 			for(int i=0; i<towers.Length; i++) BuildManager.PreBuildTower(towers[i]);
 			
@@ -133,8 +126,7 @@ namespace TDTK {
 			
 			Unit.onDestroyedE -= OnUnitDestroyed;
 		}
-		
-		
+
 		void OnUnitDestroyed(Unit unit){
 			if(unit.IsCreep()){
 				if(unit.GetUnitCreep().lifeValue>0) GainLife(unit.GetUnitCreep().lifeValue);
@@ -154,9 +146,7 @@ namespace TDTK {
 				if(onGameOverE!=null) onGameOverE(playerWon);
 			}
 		}
-		
-		
-		
+
 		IEnumerator LifeRegenRoutine(){
 			float temp=0;
 			while(true){
@@ -177,13 +167,7 @@ namespace TDTK {
 			if(capLife) playerLife=Mathf.Min(playerLife, GetPlayerLifeCap());
 			if(onLifeE!=null) onLifeE(value);
 		}
-		
-		
-		
-		
-		
-		
-		
+
 		public static void StartGame(){
 			//if game is not yet started, start it now
 			instance.gameStarted=true;
@@ -198,10 +182,7 @@ namespace TDTK {
 			playerWon=true;
 			if(onGameOverE!=null) onGameOverE(playerWon);
 		}
-		
-		
-		
-		
+
 		public UnitTower selectedTower;
 		public static UnitTower GetSelectedTower(){ return instance.selectedTower; }
 		
@@ -237,8 +218,7 @@ namespace TDTK {
 				indicatorT.gameObject.SetActive(true);
 			}
 		}
-		
-		
+
 		public static void ClearSelectedTower(){ instance._ClearSelectedTower(); }
 		public void _ClearSelectedTower(){
 			selectedTower=null;
@@ -246,9 +226,7 @@ namespace TDTK {
 			rangeIndicatorObj.SetActive(false);
 			rangeIndicator.parent=thisT;
 		}
-		
-		
-		
+
 		public static void PauseGame(){
 			instance.gameState=_GameState.Pause;
 			Time.timeScale=0;
@@ -257,15 +235,9 @@ namespace TDTK {
 			instance.gameState=_GameState.Play;
 			Time.timeScale=1;
 		}
-		
-		
+
 		public static float GetSellTowerRefundRatio(){
 			return instance.sellTowerRefundRatio;
 		}
-		
-		
-		
-		
 	}
-
 }

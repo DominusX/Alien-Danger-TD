@@ -5,8 +5,7 @@ using System.Collections.Generic;
 using TDTK;
 
 namespace TDTK {
-	
-	
+
 	public class ResourceManager : MonoBehaviour {
 		
 		public delegate void RscChangedHandler(List<int> changedValue);
@@ -45,9 +44,7 @@ namespace TDTK {
 			
 			if(enableRscGen) StartCoroutine(RscGenRoutine());
 		}
-		
-		
-		
+
 		IEnumerator RscGenRoutine(){
 			List<float> temp=new List<float>();
 			for(int i=0; i<rscList.Count; i++) temp.Add(0);
@@ -76,9 +73,7 @@ namespace TDTK {
 				if(increased) GainResource(valueList);
 			}
 		}
-		
-		
-		
+
 		public static int GetResourceCount(){
 			return instance.rscList.Count;
 		}
@@ -109,27 +104,15 @@ namespace TDTK {
 			
 			if(onRscChangedE!=null) onRscChangedE(rscL);
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		//not in use at the moment
+
 		public static void NewSceneNotification(){
 			//~ resourcesA=resourceManager.resources;
 		}
+
 		public static void ResetCummulatedResource(){
 			//~ for(int i=0; i<resourcesA.Length; i++){
 				//~ resourcesA[i].value=0;
 			//~ }
 		}
-		
-		
-		
-		
 	}
-
 }

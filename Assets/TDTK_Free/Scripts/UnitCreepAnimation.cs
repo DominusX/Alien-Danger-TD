@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 using TDTK;
 
-
 namespace TDTK {
 	
 	[RequireComponent (typeof (UnitCreep))]
@@ -23,17 +22,14 @@ namespace TDTK {
 		public AnimationClip clipHit;
 		public AnimationClip clipDead;
 		public AnimationClip clipDestination;	
-		
-		
+
 		//for mecanim
 		[HideInInspector] public Animator anim;
 		
 		//for legacy
 		[HideInInspector] public Animation aniInstance;
 		public float moveSpeedMultiplier=1.0f;
-		
-		
-		
+
 		void Awake(){
 			if(type==_AniType.None) return;
 			
@@ -46,7 +42,6 @@ namespace TDTK {
 					unitCreep.SetAnimationComponent(this);
 				}
 			}
-			
 			if(type==_AniType.Mecanim){
 				if(anim==null) anim=aniRootObj.GetComponent<Animator>();
 				if(anim!=null) unitCreep.SetAnimationComponent(this);
@@ -67,8 +62,6 @@ namespace TDTK {
 				anim.runtimeAnimatorController = overrideController;
 			}
 		}
-		
-		
 		
 		void Update(){
 			if(type==_AniType.None) return;
@@ -98,33 +91,31 @@ namespace TDTK {
 				}
 			}
 		}
-		
-		
-		
-		
+
 		public float PlaySpawn(){
 			if(type==_AniType.Mecanim) return PlaySpawnMecanim();
 			if(type==_AniType.Legacy) return PlaySpawnLegacy();
 			return 0;
 		}
+
 		public void PlayHit(){
 			if(type==_AniType.Mecanim) PlayHitMecanim();
 			if(type==_AniType.Legacy) PlayHitLegacy();
 			return;
 		}
+
 		public float PlayDead(){
 			if(type==_AniType.Mecanim) return PlayDeadMecanim();
 			if(type==_AniType.Legacy) return PlayDeadLegacy();
 			return 0;
 		}
+
 		public float PlayDestination(){
 			if(type==_AniType.Mecanim) return PlayDestinationMecanim();
 			if(type==_AniType.Legacy) return PlayDestinationLegacy();
 			return 0;
 		}
-		
-		
-		
+
 		public float PlaySpawnLegacy(){
 			float duration=0;
 			
@@ -135,49 +126,45 @@ namespace TDTK {
 			
 			return duration;
 		}
+
 		public void PlayHitLegacy(){
 			if(aniInstance!=null && clipHit!=null) aniInstance.CrossFade(clipHit.name);
 		}
+
 		public float PlayDeadLegacy(){
 			aniInstance.Stop();
 			float duration=0;
 			if(aniInstance!=null && clipDead!=null) aniInstance.CrossFade(clipDead.name);
 			return duration;
 		}
+
 		public float PlayDestinationLegacy(){
 			aniInstance.Stop();
 			float duration=0;
 			if(aniInstance!=null && clipDestination!=null) aniInstance.CrossFade(clipDestination.name);
 			return duration;
 		}
-		
-	
-		
-		
-		
-		
+
 		public float PlaySpawnMecanim(){
 			anim.SetTrigger("Spawn");
 			return clipSpawn!=null ? clipSpawn.length : 0;
 		}
+
 		public void PlayHitMecanim(){
 			anim.SetTrigger("Hit");
 		}
+
 		public float PlayDeadMecanim(){
 			anim.SetTrigger("Dead");
 			//return anim.GetNextAnimatorStateInfo(0).length;
 			return clipDead!=null ? clipDead.length : 0;
 		}
+
 		public float PlayDestinationMecanim(){
 			anim.SetTrigger("Destination");
 			//return anim.GetNextAnimatorStateInfo(0).length;
 			return clipDestination!=null ? clipDestination.length : 0;
 		}
-		
-		
-		
-		
-		
 		
 		private void InitAnimation(){
 			if(aniInstance==null) return;
@@ -211,11 +198,6 @@ namespace TDTK {
 				aniInstance.GetComponent<Animation>()[clipDestination.name].layer=3;
 				aniInstance.GetComponent<Animation>()[clipDestination.name].wrapMode=WrapMode.Once;
 			}
-			
 		}
-		
-		
-		
 	}
-	
 }

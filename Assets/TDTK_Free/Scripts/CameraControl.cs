@@ -19,14 +19,10 @@ namespace TDTK {
 			
 			private float touchZoomSpeed;
 		#endif
-		
-		
-		
+
 		public Transform camT;
-		
 		public float panSpeed=5;
 		public float zoomSpeed=5;
-		
 		
 		public bool enableMouseRotate=true;
 		public bool enableMousePanning=false;
@@ -36,8 +32,7 @@ namespace TDTK {
 		
 		//for mobile/touch input 
 		public float rotationSpeed=1;
-		
-		
+
 		public float minPosX=-10;
 		public float maxPosX=10;
 		
@@ -49,13 +44,9 @@ namespace TDTK {
 		
 		public float minRotateAngle=10;
 		public float maxRotateAngle=89;
-
-
+		
 		//calculated deltaTime based on timeScale so camera movement speed always remain constant
 		private float deltaT;
-		
-		
-		
 		private float currentZoom=0;
 		
 		private Transform thisT;
@@ -82,18 +73,13 @@ namespace TDTK {
 			
 			currentZoom=camT.localPosition.z;
 		}
-		
-		
-		
-		
-		
+
 		// Update is called once per frame
 		void Update () {
 			
 			if(Time.timeScale==1) deltaT=Time.deltaTime;
 			else if(Time.timeScale>1) deltaT=Time.deltaTime/Time.timeScale;
 			else deltaT=0.015f;
-
 
 			//mouse and keyboard
 			if(enableMouseRotate){
@@ -129,8 +115,7 @@ namespace TDTK {
 			}	
 			
 			Quaternion direction=Quaternion.Euler(0, thisT.eulerAngles.y, 0);
-			
-			
+
 			if(enableKeyPanning){
 				if(Input.GetButton("Horizontal")) {
 					Vector3 dir=transform.InverseTransformDirection(direction*Vector3.right);
@@ -156,15 +141,13 @@ namespace TDTK {
 				else if(mousePos.y>=Screen.height) thisT.Translate(dirVer * panSpeed * deltaT * 3);
 				else if(mousePos.y>Screen.height-mousePanningZoneWidth) thisT.Translate(dirVer * panSpeed * deltaT * 1);
 			}
-			
-			
+
 			float zoomInput=Input.GetAxis("Mouse ScrollWheel");
+
 			if(zoomInput!=0){
 				currentZoom+=zoomSpeed*zoomInput;
 				currentZoom=Mathf.Clamp(currentZoom, -maxZoomDistance, -minZoomDistance);
 			}
-			
-
 			
 			if(avoidClipping){
 				Vector3 aPos=thisT.TransformPoint(new Vector3(0, 0, currentZoom));
@@ -187,20 +170,16 @@ namespace TDTK {
 				float camZ=Mathf.Lerp(camT.localPosition.z, currentZoom, Time.deltaTime*4);
 				camT.localPosition=new Vector3(camT.localPosition.x, camT.localPosition.y, camZ);
 			}
-			
-			
+
 			float x=Mathf.Clamp(thisT.position.x, minPosX, maxPosX);
 			float z=Mathf.Clamp(thisT.position.z, minPosZ, maxPosZ);
 			
 			thisT.position=new Vector3(x, thisT.position.y, z);
-			
 		}
 		
 		public bool avoidClipping=false;
 		private bool obstacle=false;
-		
-		
-		
+
 		public bool showGizmo=true;
 		void OnDrawGizmos(){
 			if(showGizmo){
@@ -216,7 +195,5 @@ namespace TDTK {
 				Gizmos.DrawLine(p4, p1);
 			}
 		}
-		
 	}
-
 }

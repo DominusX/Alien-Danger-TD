@@ -48,5 +48,4 @@ namespace TDTK {
 		#endif
 
 	}
-	
 }

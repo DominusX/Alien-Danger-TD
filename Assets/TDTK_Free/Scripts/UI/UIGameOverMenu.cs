@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-
 using System.Collections;
 using System.Collections.Generic;
 
@@ -12,6 +11,7 @@ namespace TDTK {
 
 		private GameObject thisObj;
 		private static UIGameOverMenu instance;
+		private static GlobalScoreBoard globalScores;
 		
 		public Text txtTitle;
 		public GameObject butContinueObj;
@@ -19,37 +19,36 @@ namespace TDTK {
 		void Awake(){
 			instance=this;
 			thisObj=gameObject;
-			
 			transform.localPosition=Vector3.zero;
-			
-			
+			print (PlayerPrefs.GetString("Player Name"));
 		}
 		
 		// Use this for initialization
 		void Start () {
 			Hide();
 		}
-		
-		
-		
+
 		public void OnContinueButton(){
+			ClaimHighScore.scoreSubmitted = false;
 			Time.timeScale=1;
 			GameControl.LoadNextScene();
 		}
 		
 		public void OnRestartButton(){
+			ClaimHighScore.scoreSubmitted = false;
 			Application.LoadLevel(Application.loadedLevelName);
 		}
 		
 		public void OnMainMenuButton(){
+			ClaimHighScore.scoreSubmitted = false;
 			Time.timeScale=1;
 			GameControl.LoadMainMenu();
 		}
-		
-		
+
 		public static bool isOn=true;
 		public static void Show(bool playerWon){ instance._Show(playerWon); }
 		public void _Show(bool playerWon){
+
 			if(playerWon){
 				txtTitle.text="Level Completed!";
 				butContinueObj.SetActive(true);
@@ -58,17 +57,22 @@ namespace TDTK {
 				txtTitle.text="Game Over";
 				butContinueObj.SetActive(false);
 			}
-			
+
+			// Getting resources, getting points from framework & setting player prefs
+			List<Rsc> resources = ResourceManager.GetResourceList();
+			PlayerPrefs.SetInt ("Player Score", resources [1].value);
+
 			isOn=true;
 			thisObj.SetActive(isOn);
+			Time.timeScale=0;
+			ClaimHighScore.ClaimScore();
+			ClaimHighScore.scoreSubmitted = true;
 		}
+
 		public static void Hide(){ instance._Hide(); }
 		public void _Hide(){
 			isOn=false;
 			thisObj.SetActive(isOn);
 		}
-		
 	}
-
-
 }

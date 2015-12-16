@@ -22,9 +22,7 @@ namespace TDTK {
 		
 		public delegate void SpawnTimerHandler(float time);
 		public static event SpawnTimerHandler onSpawnTimerE;		//call to indicate timer refresh for continous spawn
-		
-		
-		
+
 		public enum _SpawnMode{Continous, WaveCleared, Round}
 		public _SpawnMode spawnMode;
 		
@@ -75,14 +73,12 @@ namespace TDTK {
 			
 			if(autoStart) StartCoroutine(AutoStartRoutine());
 		}
-		
-		
+
 		IEnumerator AutoStartRoutine(){
 			yield return new WaitForSeconds(autoStartDelay);
 			_Spawn();
 		}
-		
-		
+
 		void OnEnable(){
 			Unit.onDestroyedE += OnUnitDestroyed;
 			UnitCreep.onDestinationE += OnUnitReachDestination;
@@ -91,19 +87,20 @@ namespace TDTK {
 			Unit.onDestroyedE -= OnUnitDestroyed;
 			UnitCreep.onDestinationE -= OnUnitReachDestination;
 		}
-		
-		
+
 		void OnUnitDestroyed(Unit unit){
 			if(!unit.IsCreep()) return;
 			
 			UnitCreep creep=unit.GetUnitCreep();
 			OnUnitCleared(creep);
 		}
+
 		void OnUnitReachDestination(UnitCreep creep){
 			//only execute if creep is dead 
 			//when using path-looping the creep would be still active and wouldnt set it's dead flag to true
 			if(creep.dead) OnUnitCleared(creep);
 		}
+
 		void OnUnitCleared(UnitCreep creep){
 			int waveID=creep.waveID;
 			
@@ -127,15 +124,13 @@ namespace TDTK {
 					if(spawnMode==_SpawnMode.Round && onEnableSpawnE!=null) onEnableSpawnE();
 				}
 			}
-			
-			
+
 			if(!IsAllWaveCleared() && activeUnitCount==0 && !spawning){
 				if(spawnMode==_SpawnMode.WaveCleared) SpawnWaveFinite();
 			}
 			
 		}
-		
-		
+
 		public static int AddDestroyedSpawn(UnitCreep unit){ return instance._AddDestroyedSpawn(unit); }
 		public int _AddDestroyedSpawn(UnitCreep unit){
 			activeUnitCount+=1;
@@ -144,10 +139,7 @@ namespace TDTK {
 			
 			return totalSpawnCount+=1;
 		}
-		
-		
-		
-		
+
 		public static void Spawn(){ instance._Spawn(); }
 		public void _Spawn(){
 			if(GameControl.IsGameOver()) return;
@@ -179,8 +171,7 @@ namespace TDTK {
 				yield return new WaitForSeconds(duration);
 			}
 		}
-		
-		
+
 		private float SpawnWaveFinite(){
 			if(spawning) return 0;
 			
@@ -255,10 +246,7 @@ namespace TDTK {
 				}
 			}
 		}
-		
-		
-		
-		
+
 		public bool IsSpawningStarted(){
 			return currentWaveID>=0 ? true : false;
 		}
@@ -275,5 +263,4 @@ namespace TDTK {
 		
 		public static int GetCurrentWaveID(){ return instance.currentWaveID; }
 	}
-
 }

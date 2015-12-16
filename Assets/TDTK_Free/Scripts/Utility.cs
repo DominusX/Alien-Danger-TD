@@ -15,10 +15,7 @@ public class Utility : MonoBehaviour {
 		
 		return worldScale;
 	}
-	
-	
-	
-	
+
 	public static void DestroyColliderRecursively(Transform root){
 		foreach(Transform child in root) {
 			if(child.GetComponent<Collider>()!=null) {
@@ -34,9 +31,7 @@ public class Utility : MonoBehaviour {
 			DisableColliderRecursively(child);
 		}
 	}
-	
-	
-	
+
 	public static void SetMatRecursively(Transform root, string materialName){
 		foreach(Transform child in root) {
 			if(child.GetComponent<Renderer>()!=null){
@@ -56,7 +51,4 @@ public class Utility : MonoBehaviour {
 			SetMatColorRecursively(child, colorName, color);
 		}
 	}
-
-	
 }
-

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -59,7 +59,5 @@ namespace TDTK {
 			CreepDB instance=obj.GetComponent<CreepDB>();
 			return instance.creepList.Count==0 ? null : instance.creepList[0];
 		}
-
 	}
-	
 }

@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-
 using System.Collections;
 using System.Collections.Generic;
 
@@ -12,13 +11,11 @@ namespace TDTK {
 
 		public Text txtLife;
 		public Text txtWave;
-		
 		public Text txtTimer;
 		public UnityButton buttonSpawn;
 		
 		public List<UnityButton> rscObjList=new List<UnityButton>();
-		
-		
+
 		// Use this for initialization
 		void Start () {
 			buttonSpawn.Init();
@@ -107,9 +104,7 @@ namespace TDTK {
 			}
 			else if(txtTimer.text!="") txtTimer.text="";
 		}
-		
-		
-		
+
 		public Toggle toggleFastForward;
 		public void ToggleFF(){
 			if(toggleFastForward.isOn) Time.timeScale=UI.GetFFTime();
@@ -132,5 +127,4 @@ namespace TDTK {
 			}
 		}
 	}
-
 }

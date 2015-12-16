@@ -30,13 +30,9 @@ namespace TDTK {
 		public GameObject floatingButtons;
 		public GameObject butUpgrade;
 		public GameObject butSell;
-		
-		
-		private int upgradeOption=1;	//a number recording the upgrade option available for the tower, update everytime tower.ReadyToBeUpgrade() is called
-													//0 - not upgradable
-													//1 - can be upgraded
-													//2 - 2 upgrade path, shows 2 upgrade buttons
-		
+
+		private int upgradeOption=1;
+
 		public GameObject rscTooltipObj;
 		public List<UnityButton> rscTooltipObjList=new List<UnityButton>();
 		
@@ -46,8 +42,7 @@ namespace TDTK {
 		
 		public GameObject directionObj;
 		public Slider sliderDirection;
-		
-		
+
 		void Start(){
 			instance=this;
 			thisObj=gameObject;
@@ -60,8 +55,7 @@ namespace TDTK {
 				rscObjList[i].imageIcon.sprite=rscList[i].icon;
 			}
 			rscObj=rscObjList[0].rootT.parent.gameObject;
-			
-			
+
 			//for upgrade/selling cost
 			for(int i=0; i<rscList.Count; i++){
 				if(i==0) rscTooltipObjList[i].Init();
@@ -77,17 +71,13 @@ namespace TDTK {
 			Hide();
 		}
 
-		// Use this for initialization
-		//~ void Start () {
-			
-		//~ }
-		
 		void OnEnable(){
 			GameControl.onGameOverE += OnGameOver;
 			UnitTower.onConstructionCompleteE += OnConstructionComplete;
 			
 			Unit.onDestroyedE += OnUnitDestroyed;
 		}
+
 		void OnDisable(){
 			GameControl.onGameOverE += OnGameOver;
 			UnitTower.onConstructionCompleteE -= OnConstructionComplete;
@@ -117,7 +107,6 @@ namespace TDTK {
 			else{
 				butUpgrade.SetActive(false);
 			}
-			
 		}
 		
 		void OnUnitDestroyed(Unit unit){
@@ -145,10 +134,7 @@ namespace TDTK {
 			else if(currentX>Screen.width/2 && screenPos.x<Screen.width/2) _SetScreenPos(screenPos);
 			
 		}
-		
-		
-		
-		
+
 		public void OnUpgradeButton(){ UpgradeTower(); }
 		public void OnUpgradeButtonAlt(){ UpgradeTower(1); }
 		public void UpgradeTower(int upgradePath=0){
@@ -159,14 +145,15 @@ namespace TDTK {
 			}
 			else UIGameMessage.DisplayMessage(exception);
 		}
+
 		public void OnHoverUpgradeButton(){ OnHoverUpgradeSellButton(currentTower.GetCost()); }
 		public void OnHoverUpgradeButtonAlt(){ OnHoverUpgradeSellButton(currentTower.GetCost(1)); }
-		
-		
+
 		public void OnSellButton(){
 			currentTower.Sell();
 			UI.ClearSelectedTower();
 		}
+
 		public void OnHoverSellButton(){ OnHoverUpgradeSellButton(currentTower.GetValue()); }
 		
 		public void OnHoverUpgradeSellButton(List<int> cost){
@@ -183,9 +170,9 @@ namespace TDTK {
 			currentTower.SwitchToNextTargetPriority();
 			txtTargetPriority.text=currentTower.targetPriority.ToString();
 		}
-		
-		
+
 		private float currentX=0;
+
 		public static void SetScreenPos(Vector3 pos){ instance._SetScreenPos(pos); }
 		public void _SetScreenPos(Vector3 pos){
 			if(pos.x<Screen.width/2){
@@ -199,8 +186,7 @@ namespace TDTK {
 			
 			currentX=pos.x;
 		}
-		
-		
+
 		IEnumerator WaitForConstruction(){
 			while(currentTower!=null && currentTower.IsInConstruction()) yield return null;
 			if(currentTower!=null){
@@ -208,7 +194,6 @@ namespace TDTK {
 				floatingButtons.SetActive(true);
 			}
 		}
-		
 		
 		public static bool isOn=true;
 		public static void Show(UnitTower tower, bool showControl=false){ instance._Show(tower, showControl); }
@@ -252,13 +237,12 @@ namespace TDTK {
 			
 			thisObj.SetActive(isOn);
 		}
+
 		public static void Hide(){ instance._Hide(); }
 		public void _Hide(){
 			//currentTower=null;
 			isOn=false;
 			thisObj.SetActive(isOn);
 		}
-		
 	}
-
 }

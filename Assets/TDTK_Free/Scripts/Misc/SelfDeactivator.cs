@@ -5,8 +5,7 @@ public class SelfDeactivator : MonoBehaviour {
 
 	public bool useObjectPool=true;
 	public float duration=1;
-	
-	
+
 	void OnEnable(){
 		StartCoroutine(DeactivateRoutine());
 	}
@@ -16,5 +15,4 @@ public class SelfDeactivator : MonoBehaviour {
 		if(useObjectPool) ObjectPoolManager.Unspawn(gameObject);
 		else Destroy(gameObject);
 	}
-	
 }

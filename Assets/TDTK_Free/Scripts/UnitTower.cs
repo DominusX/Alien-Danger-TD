@@ -8,8 +8,7 @@ namespace TDTK {
 
 	public enum _TowerType{Turret, AOE, Support}
 	public enum _TargetMode{Hybrid, Air, Ground}
-	
-	
+
 	public class UnitTower : Unit {
 		
 		public delegate void TowerSoldHandler(UnitTower tower);
@@ -23,18 +22,15 @@ namespace TDTK {
 		
 		public delegate void ConstructionCompleteHandler(UnitTower tower);
 		public static event ConstructionCompleteHandler onConstructionCompleteE;
-		
-		
+
 		public delegate void PlayConstructAnimation();
 		public PlayConstructAnimation playConstructAnimation;
 		public delegate void PlayDeconstructAnimation();
 		public PlayDeconstructAnimation playDeconstructAnimation;
-		
-		
+
 		public _TowerType type=_TowerType.Turret;
 		public _TargetMode targetMode=_TargetMode.Hybrid;
-		
-		
+
 		public bool disableInBuildManager=false;	//when set to true, tower wont appear in BuildManager buildList
 		
 		private enum _Construction{None, Constructing, Deconstructing}
@@ -84,7 +80,6 @@ namespace TDTK {
 			}
 		}
 		
-		
 		[HideInInspector] public float builtDuration;
 		[HideInInspector] public float buildDuration;
 		public void UnBuild(){ StartCoroutine(Building(stats[currentActiveStat].unBuildDuration, true));	}
@@ -118,18 +113,17 @@ namespace TDTK {
 				Dead();
 			}
 		}
+
 		public float GetBuildProgress(){ 
 			if(construction==_Construction.Constructing) return builtDuration/buildDuration;
 			if(construction==_Construction.Deconstructing) return (buildDuration-builtDuration)/buildDuration;
 			else return 0;
 		}
-		
-		
+
 		public void Sell(){
 			UnBuild();
 		}
-		
-		
+
 		private bool isSampleTower;
 		private UnitTower srcTower;
 		public void SetAsSampleTower(UnitTower tower){
@@ -137,6 +131,7 @@ namespace TDTK {
 			srcTower=tower;
 			thisT.position=new Vector3(0, 9999, 0);
 		}
+
 		public bool IsSampleTower(){ return isSampleTower; }
 		public IEnumerator DragNDropRoutine(){
 			GameControl.SelectTower(this);
@@ -159,8 +154,7 @@ namespace TDTK {
 					//this there is no collier, randomly place it 30unit from camera
 					else thisT.position=ray.GetPoint(30);
 				}
-				
-				
+
 				//left-click, build
 				if(Input.GetMouseButtonDown(0) && !UIUtilities.IsCursorOnUI()){
 					//if current mouse point position is valid, build the tower
@@ -189,9 +183,7 @@ namespace TDTK {
 				
 			thisT.position=new Vector3(0, 9999, 0);
 		}
-		
-		
-		
+
 		public override void Update() {
 			base.Update();
 		}
@@ -199,10 +191,7 @@ namespace TDTK {
 		public override void FixedUpdate(){
 			base.FixedUpdate();
 		}
-		
-		
-		
-		
+
 		IEnumerator AOETowerRoutine(){
 			if(targetMode==_TargetMode.Hybrid){
 				LayerMask mask1=1<<LayerManager.LayerCreep();
@@ -240,12 +229,7 @@ namespace TDTK {
 				}
 			}
 		}
-		
-		
-		
-		
-		
-		
+
 		private int level=1;
 		public int GetLevel(){ return level; }
 		public void SetLevel(int lvl){ level=lvl; }
@@ -257,11 +241,13 @@ namespace TDTK {
 			//if(nextLevelTower!=null) return 1;
 			return 0;
 		}
+
 		public string Upgrade(int ID=0){	//ID specify which nextTower to use
 			if(currentActiveStat<stats.Count-1) return UpgradeToNextStat();
 			//else if(nextLevelTower!=null) return UpgradeToNextTower();
 			return "Tower is at maximum level!";
 		}
+
 		public string UpgradeToNextStat(){
 			List<int> cost=GetCost();
 			int suffCost=ResourceManager.HasSufficientResource(cost);
@@ -277,9 +263,7 @@ namespace TDTK {
 			}
 			return "Insufficient Resource";
 		}
-		
-		
-		
+
 		//only use cost from sample towers or in game tower instance, not the prefab
 		//ID is for upgrade path
 		public List<int> GetCost(int ID=0){
@@ -293,8 +277,6 @@ namespace TDTK {
 			}
 			return cost;
 		}
-
-		
 		
 		public List<int> value=new List<int>();
 		//apply the refund ratio from gamecontrol
@@ -309,25 +291,18 @@ namespace TDTK {
 				value[i]+=list[i];
 			}
 		}
-		
-		
-		
-		
+
 		public bool DealDamage(){
 			if(type==_TowerType.Turret || type==_TowerType.AOE) return true;
 			return false;
 		}
-		
-		
-		
-		
-		
+
 		//not compatible with PointNBuild mode
 		void OnMouseEnter(){ 
 			if(UIUtilities.IsCursorOnUI()) return;
 			BuildManager.ShowIndicator(this);
 		}
+
 		void OnMouseExit(){ BuildManager.HideIndicator();}
 	}
-
 }

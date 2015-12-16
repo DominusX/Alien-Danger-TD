@@ -40,18 +40,14 @@ namespace TDTK {
 			
 			Hide();
 		}
-		
-		
+
 		public static void AddNewTower(UnitTower newTower){ instance._AddNewTower(newTower); }
 		public void _AddNewTower(UnitTower newTower){
 			int count=buttonList.Count;
 			buttonList.Add(buttonList[0].Clone("button"+(count), new Vector3(count*60, 0, 0)));
 			buttonList[count].imageIcon.sprite=newTower.iconSprite;
 		}
-		
-		
-		
-		
+
 		public void OnTowerButton(GameObject butObj){
 			//in drag and drop mode, player could be hitting the button while having an active tower selected
 			//if that's the case, clear the selectedTower first. and we can show the tooltip properly
@@ -74,6 +70,7 @@ namespace TDTK {
 			
 			Hide();
 		}
+
 		public void OnHoverTowerButton(GameObject butObj){
 			if(GameControl.GetSelectedTower()!=null) return;
 			
@@ -86,6 +83,7 @@ namespace TDTK {
 			//show tooltip
 			UITowerInfo.Show(tower);
 		}
+
 		public void OnExitHoverButton(GameObject butObj){
 			if(GameControl.GetSelectedTower()!=null && !GameControl.GetSelectedTower().IsSampleTower()) return;
 			
@@ -94,14 +92,14 @@ namespace TDTK {
 			//clear tooltip
 			UITowerInfo.Hide();
 		}
+
 		int GetButtonID(GameObject butObj){
 			for(int i=0; i<buttonList.Count; i++){
 				if(buttonList[i].rootObj==butObj) return i;
 			}
 			return 0;
 		}
-		
-		
+
 		// Update is called once per frame
 		void Update () {
 			if(!UI.UseDragNDrop()) {
@@ -120,8 +118,7 @@ namespace TDTK {
 				}
 			}
 		}
-		
-		
+
 		void UpdateActiveBuildButtonList(){
 			if(buildInfo==null) return;
 			//Debug.Log("UpdateActiveBuildButtonList");
@@ -137,10 +134,10 @@ namespace TDTK {
 				else buttonList[i].rootObj.SetActive(false);
 			}
 		}
-		
-		
+
 		public static bool isOn=true;
 		public static void Show(){ instance._Show(); }
+
 		public void _Show(){
 			buildInfo=BuildManager.GetBuildInfo();
 			UpdateActiveBuildButtonList();
@@ -149,6 +146,7 @@ namespace TDTK {
 			isOn=true;
 			thisObj.SetActive(isOn);
 		}
+
 		public static void Hide(){ instance._Hide(); }
 		public void _Hide(){
 			if(UI.UseDragNDrop()) return;
@@ -158,9 +156,7 @@ namespace TDTK {
 			isOn=false;
 			thisObj.SetActive(isOn);
 		}
-		
-		
-		
+
 		public static Transform piePosDummyT;
 		public static List<Vector3> GetPieMenuPos(float num, Vector3 screenPos, float cutoff, int size){
 			List<Vector3> points=new List<Vector3>();
@@ -204,5 +200,4 @@ namespace TDTK {
 			return points;
 		}
 	}
-
 }
