@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
@@ -19,6 +19,9 @@ namespace TDTK {
 		
 		// Use this for initialization
 		void Start (){
+			PlayerPrefs.SetString("Player Name", "");
+			PlayerPrefs.SetInt("Player Score", 0);
+
 			curLevel = Application.loadedLevelName;
 			
 			for(int i=0; i<levelName.Count; i++){

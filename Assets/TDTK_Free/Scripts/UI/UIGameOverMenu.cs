@@ -11,7 +11,6 @@ namespace TDTK {
 
 		private GameObject thisObj;
 		private static UIGameOverMenu instance;
-		private static GlobalScoreBoard globalScores;
 		
 		public Text txtTitle;
 		public GameObject butContinueObj;
@@ -20,7 +19,6 @@ namespace TDTK {
 			instance=this;
 			thisObj=gameObject;
 			transform.localPosition=Vector3.zero;
-			print (PlayerPrefs.GetString("Player Name"));
 		}
 		
 		// Use this for initialization
@@ -29,18 +27,18 @@ namespace TDTK {
 		}
 
 		public void OnContinueButton(){
-			ClaimHighScore.scoreSubmitted = false;
+			WindowsClameScore.scoreSubmitted = false;
 			Time.timeScale=1;
 			GameControl.LoadNextScene();
 		}
 		
 		public void OnRestartButton(){
-			ClaimHighScore.scoreSubmitted = false;
+			WindowsClameScore.scoreSubmitted = false;
 			Application.LoadLevel(Application.loadedLevelName);
 		}
 		
 		public void OnMainMenuButton(){
-			ClaimHighScore.scoreSubmitted = false;
+			WindowsClameScore.scoreSubmitted = false;
 			Time.timeScale=1;
 			GameControl.LoadMainMenu();
 		}
@@ -65,8 +63,8 @@ namespace TDTK {
 			isOn=true;
 			thisObj.SetActive(isOn);
 			Time.timeScale=0;
-			ClaimHighScore.ClaimScore();
-			ClaimHighScore.scoreSubmitted = true;
+			WindowsClameScore.ClaimScore();
+			WindowsClameScore.scoreSubmitted = true;
 		}
 
 		public static void Hide(){ instance._Hide(); }

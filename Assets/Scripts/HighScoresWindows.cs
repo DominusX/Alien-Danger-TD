@@ -4,29 +4,25 @@ using UnityEngine.UI;
 
 public class HighScoresWindows : MonoBehaviour
 {
-
     const string privateCode = "_o9I4WdLj0SOrleD45fnVwyIg3pEOeWUirsvAUDATK4w";
     const string publicCode = "5672ddb36e51b608e4448b8e";
     const string webURL = "http://dreamlo.com/lb/";
-    public Text scoreText;
 
-  
+    public Text scoreText;
     public Highscore[] highscoresList;
     public static HighScoresWindows instance;
-    
     public int SCORE_MAX = 5;
+
+	public bool loadScores = true;
 
     void Start()
     {
-        
-        DownloadHighscores();
-        
-      // AddNewHighscore("Harry", 1500);
+		if(loadScores)
+        	DownloadHighscores();
     }
 
     void Awake()
     {
-        
         instance = this;
     }
 
@@ -43,7 +39,6 @@ public class HighScoresWindows : MonoBehaviour
         if (string.IsNullOrEmpty(www.error))
         {
             print("Upload Successful");
-            DownloadHighscores();
         }
         else {
             print("Error uploading: " + www.error);
@@ -72,7 +67,7 @@ public class HighScoresWindows : MonoBehaviour
 
     void FormatHighscores(string textStream)
     {
-         string tempScore = " ";
+        string tempScore = " ";
         string[] entries = textStream.Split(new char[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
         highscoresList = new Highscore[entries.Length];
         
@@ -88,7 +83,6 @@ public class HighScoresWindows : MonoBehaviour
         }
         scoreText.text = tempScore;
     }
-
 }
 
 public struct Highscore
@@ -101,5 +95,4 @@ public struct Highscore
         username = _username;
         score = _score;
     }
-
 }
