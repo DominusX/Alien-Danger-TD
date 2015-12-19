@@ -4,19 +4,38 @@
 
 John Walsh & Arjun Kharel
 
-## Project Details
+##Table of contents
+1: Abstract of Game Story
 
-0. The project is mainly written in C#, it uses anumber of pre-made assets and resources found on the [Unity Assets Store](https://www.assetstore.unity3d.com/en/)
-0. The leaderboard score system implements a back-end that keeps a record of the top five player scores (Global leaderboard)
+2: Project Details
 
-**Abstract of Game Story**
+3: Game World
+  - Game World overview 
+  - Enemies 
+  - Turrets/Units
+  
+4: Player Roles And Actions
+
+5: Strategies and Motivation
+
+6: Development And Technical Summary
+
+7: References
+
+**1: Abstract of Game Story**
 
 In the far future, humanity has spread to the reaches of known space. There they encountered life forms, or rather we should call them a life form, who lived as a single entity. It pities all the life forms that have to live their lives alone and attempts to save them by bringing them into the fold. Of course, humanity is not willing to submit to the desires of the life form.
 You are the commander of the static defense emplacements on the planet Earth. You have at your disposal the most advanced static defenses developed by Humanity to date. Defend the front lines and do not allow a single alien life form to slip through!
 
-**Game World (Look and Feel)**
+**2: Project Details**
 
-Image goes here
+0. The project is mainly written in C#, it uses anumber of pre-made assets and resources found on the [Unity Assets Store](https://www.assetstore.unity3d.com/en/)
+0. The leaderboard score system implements a back-end that keeps a record of the top five player scores (Global leaderboard)
+
+
+**3: Game World (Look and Feel)**
+
+  Image goes here
 
 
 
@@ -35,7 +54,7 @@ Three different types
 Images goes here
 
 
-**Player Roles and action** 
+**4: Player Roles and action** 
 
 •	It is the player’s role to place turrets in such a way that enemy units are destroyed before they can cross to the end of the map
 
@@ -45,7 +64,7 @@ Images goes here
 
 •	Upgrading the turret will change the appearance and damage of the turret
 
-**Strategies and Motivation**
+**5: Strategies and Motivation**
 
 •	The player is given a limited amount of resources
 
@@ -53,7 +72,7 @@ Images goes here
 
 •	For each enemy unit destroyed the player gains resources
 
-**Development and Technical Summary**
+**6: Development and Technical Summary**
 
 **Game Engine:** Unity3d
 
@@ -67,7 +86,7 @@ Images goes here
 
 **Backend:** For global Scoring system, we have integrated Parse API and Dreamlo API. 
 
-**References: **
+**7: References: **
 
 
 
