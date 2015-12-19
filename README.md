@@ -53,15 +53,6 @@ Images goes here
 
 •	For each enemy unit destroyed the player gains resources
 
-**Level Summary and Progression**
-
-•	Enemies spawn if waves
-
-•	If the player can stop all the waves on a map and still has health remaining, the player proceeds to the next map
-
-•	If the player can finish all maps, the player wins the game
-
-
 **Development and Technical Summary**
 
 **Game Engine:** Unity3d
