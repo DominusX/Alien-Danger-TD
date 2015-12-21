@@ -48,7 +48,7 @@ You are the commander of the static defense emplacements on the planet Earth. Yo
 
 •	It is the player’s role to place turrets in such a way that enemy units are destroyed before they can cross to the end of the map
 
-•	Clicking on an empty square will place a turret if funds allow
+•	Clicking on a yellow circle  will place a turret if funds allow
 
 •	Clicking on a turret gives the player the option to upgrade.
 
