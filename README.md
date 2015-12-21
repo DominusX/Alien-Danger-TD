@@ -35,24 +35,14 @@ You are the commander of the static defense emplacements on the planet Earth. Yo
 
 **3: Game World (Look and Feel)**
 
-  Image goes here
+**Main Menu**
+![Alt text](https://github.com/Pringlez/Alien-Danger-TD/blob/master/Github%20Images/mainmenu.png "Optional title")
 
+**Game World**
+![Alt text](https://github.com/Pringlez/Alien-Danger-TD/blob/master/Github%20Images/gameStart.png "Optional title")
 
-
-
-
-
-**Enemies**
-
-Images goes here
-
-
-
-
-**Turrets- units** 
-Three different types
-Images goes here
-
+**Turrets- units / Enemies** 
+![Alt text](https://github.com/Pringlez/Alien-Danger-TD/blob/master/Github%20Images/enemies.png "Optional title")
 
 **4: Player Roles and action** 
 
@@ -74,7 +64,7 @@ Images goes here
 
 **6: Development and Technical Summary**
 
-**Game Engine:** Unity3d
+**Game Engine:** Unity3d (TD Framework)
 
 **Programming Language:** C#
 
