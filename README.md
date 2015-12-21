@@ -44,6 +44,9 @@ You are the commander of the static defense emplacements on the planet Earth. Yo
 **Turrets- units / Enemies** 
 ![Alt text](https://github.com/Pringlez/Alien-Danger-TD/blob/master/Github%20Images/enemies.png "Optional title")
 
+**Global Leaderboard** 
+![Alt text](https://github.com/Pringlez/Alien-Danger-TD/blob/master/Github%20Images/leaderboard.png "Optional title")
+
 **4: Player Roles and action** 
 
 •	It is the player’s role to place turrets in such a way that enemy units are destroyed before they can cross to the end of the map
@@ -76,7 +79,11 @@ You are the commander of the static defense emplacements on the planet Earth. Yo
 
 **Backend:** For global Scoring system, we have integrated Parse API and Dreamlo API. 
 
-**7: References: **
+**7: References:**
+
+https://unity3d.com/learn/tutorials
+
+https://www.assetstore.unity3d.com/
 
 
 
