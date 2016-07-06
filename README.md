@@ -40,9 +40,9 @@ You are the commander of the static defense emplacements on the planet Earth. Yo
 **Global Leaderboard** 
 ![Alt text](https://github.com/Pringlez/Alien-Danger-TD/blob/master/Github%20Images/leaderboard.png "Optional title")
 
-**4: Player Roles and action** 
+**4: Player Role and Action** 
 
-•	It's the players role to place turrets in such a way that enemy units are destroyed before they can reach to the end of the map area
+•	The player must place turrets in such a way that enemy units are destroyed before they can reach to the end of the map
 
 •	Clicking on a yellow circle will place a turret if funds allow
 
