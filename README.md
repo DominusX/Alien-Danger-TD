@@ -6,20 +6,14 @@ John Walsh & Arjun Kharel
 
 ##Table of contents
 1: Abstract of Game Story
-
 2: Project Details
-
 3: Game World
   - Game World overview 
   - Enemies 
   - Turrets/Units
-  
 4: Player Roles And Actions
-
 5: Strategies and Motivation
-
 6: Development And Technical Summary
-
 7: References
 
 **1: Abstract of Game Story**
@@ -31,7 +25,6 @@ You are the commander of the static defense emplacements on the planet Earth. Yo
 
 0. The project is mainly written in C#, it uses anumber of pre-made assets and resources found on the [Unity Assets Store](https://www.assetstore.unity3d.com/en/)
 0. The leaderboard score system implements a back-end that keeps a record of the top five player scores (Global leaderboard)
-
 
 **3: Game World (Look and Feel)**
 
@@ -49,20 +42,15 @@ You are the commander of the static defense emplacements on the planet Earth. Yo
 
 **4: Player Roles and action** 
 
-•	It is the player’s role to place turrets in such a way that enemy units are destroyed before they can cross to the end of the map
-
-•	Clicking on a yellow circle  will place a turret if funds allow
-
+•	It's the players role to place turrets in such a way that enemy units are destroyed before they can reach to the end of the map area
+•	Clicking on a yellow circle will place a turret if funds allow
 •	Clicking on a turret gives the player the option to upgrade.
-
 •	Upgrading the turret will change the appearance and damage of the turret
 
 **5: Strategies and Motivation**
 
 •	The player is given a limited amount of resources
-
 •	For each turret placed the player loses resources
-
 •	For each enemy unit destroyed the player gains resources
 
 **6: Development and Technical Summary**
@@ -73,7 +61,7 @@ You are the commander of the static defense emplacements on the planet Earth. Yo
 
 **Modelling software:** SketchUp 3D
 
-**Graphics:** We have used the royalty’s free assets from unity store.  We also made our own graphics using the 3D modelling software. 
+**Graphics:** We have used the royalty’s free assets from unity store.  We also made our own graphics using the 3D modelling software.
 
 **Platforms:** Windows Phone / Windows Store / Android / Apple IOS / Web etc.
 
@@ -81,11 +69,5 @@ You are the commander of the static defense emplacements on the planet Earth. Yo
 
 **7: References:**
 
-https://unity3d.com/learn/tutorials
-
-https://www.assetstore.unity3d.com/
-
-
-
-
-
+* https://unity3d.com/learn/tutorials
+* https://www.assetstore.unity3d.com/
