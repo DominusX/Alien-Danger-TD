@@ -43,14 +43,19 @@ You are the commander of the static defense emplacements on the planet Earth. Yo
 **4: Player Roles and action** 
 
 •	It's the players role to place turrets in such a way that enemy units are destroyed before they can reach to the end of the map area
+
 •	Clicking on a yellow circle will place a turret if funds allow
-•	Clicking on a turret gives the player the option to upgrade.
+
+•	Clicking on a turret gives the player the option to upgrade
+
 •	Upgrading the turret will change the appearance and damage of the turret
 
 **5: Strategies and Motivation**
 
 •	The player is given a limited amount of resources
+
 •	For each turret placed the player loses resources
+
 •	For each enemy unit destroyed the player gains resources
 
 **6: Development and Technical Summary**
