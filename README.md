@@ -8,9 +8,9 @@ John Walsh & Arjun Kharel
 1: Abstract of Game Story
 2: Project Details
 3: Game World
-  - Game World Overview 
-  - Enemies 
-  - Turrets / Units
+  -Game World Overview 
+  -Enemies 
+  -Turrets / Units
 4: Player Roles And Actions
 5: Strategies and Motivation
 6: Development And Technical Summary
