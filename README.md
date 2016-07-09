@@ -8,9 +8,9 @@ John Walsh & Arjun Kharel
 1: Abstract of Game Story
 2: Project Details
 3: Game World
-  - Game World overview 
+  - Game World Overview 
   - Enemies 
-  - Turrets/Units
+  - Turrets / Units
 4: Player Roles And Actions
 5: Strategies and Motivation
 6: Development And Technical Summary
@@ -44,9 +44,9 @@ You are the commander of the static defense emplacements on the planet Earth. Yo
 
 •	The player must place turrets in such a way that enemy units are destroyed before they can reach to the end of the map
 
-•	Clicking on a yellow circle will place a turret if funds allow
+•	Clicking on a green circle-x will allow the player to place a turret if funds allow
 
-•	Clicking on a turret gives the player the option to upgrade
+•	Clicking on a turret gives the player the option to upgrade the damage output of the turret
 
 •	Upgrading the turret will change the appearance and damage of the turret
 
