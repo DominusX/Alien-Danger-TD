@@ -8,9 +8,8 @@ John Walsh & Arjun Kharel
 0. Abstract of Game Story
 0. Project Details
 0. Game World
-* Game World Overview 
-* Enemies 
-* Turrets / Units
+0. Enemies 
+0. Turrets / Units
 0. Player Roles And Actions
 0. Strategies and Motivation
 0. Development And Technical Summary
@@ -34,7 +33,7 @@ You are the commander of the static defense emplacements on the planet Earth. Yo
 **Game World**
 ![Alt text](https://github.com/Pringlez/Alien-Danger-TD/blob/master/Github%20Images/gameStart.png "Optional title")
 
-**Turrets- units / Enemies** 
+**Turrets Units / Enemies** 
 ![Alt text](https://github.com/Pringlez/Alien-Danger-TD/blob/master/Github%20Images/enemies.png "Optional title")
 
 **Global Leaderboard** 
