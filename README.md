@@ -5,16 +5,16 @@
 John Walsh & Arjun Kharel
 
 ##Table of contents
-1: Abstract of Game Story
-2: Project Details
-3: Game World
-  -Game World Overview 
-  -Enemies 
-  -Turrets / Units
-4: Player Roles And Actions
-5: Strategies and Motivation
-6: Development And Technical Summary
-7: References
+0. Abstract of Game Story
+0. Project Details
+0. Game World
+* Game World Overview 
+* Enemies 
+* Turrets / Units
+0. Player Roles And Actions
+0. Strategies and Motivation
+0. Development And Technical Summary
+0. References
 
 **1: Abstract of Game Story**
 
